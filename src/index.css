@@ -20,7 +20,7 @@
     --secondary-color: #215583;
     --accent-color: #a52000;
 
-    --visited-link: #5C3880;
+    --visited-link: #5c3880;
 }
 
 :root:has(body.dark-mode) {
@@ -34,7 +34,12 @@
 
 body {
     font-family: var(--font-stack);
-    min-height: 100svh;
     background-color: var(--background-color);
     color: var(--text-main);
+}
+
+#root {
+    min-height: 100svh;
+    flex-direction: column;
+    display: flex;
 }

@@ -5,7 +5,7 @@ header {
 .app-heading {
     max-width: max-content;
     font-size: var(--fs-lg);
-    
+
     position: relative;
 
     display: flex;
@@ -16,7 +16,6 @@ header {
 .header-credits {
     position: absolute;
     bottom: -35%;
-
 
     font-style: italic;
     font-size: var(--fs-base);
@@ -50,4 +49,3 @@ header {
 .credits-name:visited::before {
     background-color: var(--visited-link);
 }
-
