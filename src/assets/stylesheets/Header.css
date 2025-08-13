@@ -1,0 +1,51 @@
+header {
+    padding-left: 0.25rem;
+}
+
+.app-heading {
+    max-width: max-content;
+    font-size: var(--fs-lg);
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+.header-credits {
+    position: absolute;
+    bottom: -35%;
+
+    font-style: italic;
+    font-size: var(--fs-base);
+    font-weight: 500;
+}
+
+.credits-name {
+    text-decoration: none;
+    color: var(--text-main);
+    position: relative;
+}
+
+.credits-name::before {
+    content: '';
+    position: absolute;
+    bottom: -1.2%;
+    left: -1%;
+    width: 95%;
+    height: 0.185rem;
+    background-color: var(--secondary-color);
+    transform: skew(-45deg);
+    opacity: 0.7;
+
+    transition: 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.credits-name:hover::before {
+    opacity: 1;
+}
+
+.credits-name:visited::before {
+    background-color: var(--visited-link);
+}
