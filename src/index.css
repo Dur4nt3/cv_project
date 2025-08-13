@@ -1,4 +1,13 @@
-@import url(./assets/stylesheets/fonts.css);
+@font-face {
+    font-family: Inter;
+    src: url(./assets/fonts/InterVariable.woff2);
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(./assets/fonts/InterVariable-Italic.woff2);
+    font-style: italic;
+}
 
 :root {
     --font-stack:
@@ -12,8 +21,73 @@
     --fs-xl: clamp(1.95rem, 1.43vi + 1.67rem, 2.81rem);
     --fs-xxl: clamp(2.44rem, 2.18vi + 2.01rem, 3.75rem);
     --fs-xxxl: clamp(3.05rem, 3.24vi + 2.4rem, 5rem);
+
+    color-scheme: light;
+
+    --text-main: #222c35;
+    --text-alt: #eff5f9;
+    --background-color: #f3f9fd;
+    --primary-color: #0052a6;
+    --secondary-color: #215583;
+    --accent-color: #a52000;
+
+    --visited-link: #6d27c2;
+    --confirm-green: #00e34c;
+
+    --primary-low-opacity: rgba(0, 82, 166, 0.35);
+
+    --background-shadow: 0 1px 7.75px 2px #c8c8c8;
+}
+
+:root:has(body.dark-mode) {
+    color-scheme: dark;
+
+    --text-main: #eff5f9;
+    --text-alt: #222c35;
+    --background-color: #0b0f16;
+    --primary-color: #58a9f7;
+    --secondary-color: #78aad3;
+    --accent-color: #8e1c00;
+
+    --primary-low-opacity: rgba(88, 169, 247, 0.35);
+
+    --background-shadow: 0 1px 7.75px 2px #060606;
 }
 
 body {
-    font-family: var(--font-stack);
+    font-family: Inter, var(--font-stack);
+    background-color: var(--background-color);
+    color: var(--text-main);
+}
+
+#root {
+    min-height: 100svh;
+    flex-direction: column;
+    display: flex;
+}
+
+.inline-img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div .custom-tooltip {
+    z-index: 2;
+    max-width: 35ch;
+    opacity: 1;
+    font-size: var(--fs-sm);
+    color: var(--text-alt);
+    background-color: var(--primary-color);
+}
+
+.custom-tooltip > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (min-width: 40rem) {
+    div .custom-tooltip {
+        max-width: 45ch;
+    }
 }

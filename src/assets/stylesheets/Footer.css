@@ -1,0 +1,13 @@
+footer {
+    padding: 0.5rem;
+    display: grid;
+    place-items: center;
+}
+
+.footer-link {
+    transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.footer-link:hover {
+    transform: translateY(-0.2rem);
+}

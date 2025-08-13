@@ -1,0 +1,16 @@
+main {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    flex-grow: 1;
+    padding: 0.25rem;
+
+    display: grid;
+    place-items: center;
+}
+
+@media (min-width: 40rem) {
+    main {
+        padding: 0.5rem;
+    }
+}
