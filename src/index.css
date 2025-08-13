@@ -12,8 +12,29 @@
     --fs-xl: clamp(1.95rem, 1.43vi + 1.67rem, 2.81rem);
     --fs-xxl: clamp(2.44rem, 2.18vi + 2.01rem, 3.75rem);
     --fs-xxxl: clamp(3.05rem, 3.24vi + 2.4rem, 5rem);
+
+    --text-main: #222c35;
+    --text-alt: #eff5f9;
+    --background-color: #f3f9fd;
+    --primary-color: #0052a6;
+    --secondary-color: #215583;
+    --accent-color: #a52000;
+
+    --visited-link: #5C3880;
+}
+
+:root:has(body.dark-mode) {
+    --text-main: #eff5f9;
+    --text-alt: #222c35;
+    --background-color: #101820;
+    --primary-color: #58a9f7;
+    --secondary-color: #78aad3;
+    --accent-color: #8e1c00;
 }
 
 body {
     font-family: var(--font-stack);
+    min-height: 100svh;
+    background-color: var(--background-color);
+    color: var(--text-main);
 }

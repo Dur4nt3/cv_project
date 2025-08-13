@@ -1,0 +1,83 @@
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-Regular.woff2);
+    font-size: 400;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-Thin.woff2);
+    font-size: 100;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-ThinItalic.woff2);
+    font-size: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-ExtraLight.woff2);
+    font-size: 200;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-ExtraLightItalic.woff2);
+    font-size: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-Light.woff2);
+    font-size: 300;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-LightItalic.woff2);
+    font-size: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-Medium.woff2);
+    font-size: 500;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-MediumItalic.woff2);
+    font-size: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-SemiBold.woff2);
+    font-size: 600;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-SemiBoldItalic.woff2);
+    font-size: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-Bold.woff2);
+    font-size: 700;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(../fonts/Inter-BoldItalic.woff2);
+    font-size: 700;
+    font-style: italic;
+}

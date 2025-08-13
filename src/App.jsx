@@ -1,9 +1,9 @@
+import Header from './modules/components/Header';
+
 function App() {
-    return (
-        <>
-            <h1>React is up and running!</h1>
-        </>
-    );
+    return <>
+        <Header />
+    </>;
 }
 
 export default App;
