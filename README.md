@@ -1,6 +1,6 @@
 # CV Application
 
-## "CV Application" - Overview
+## CV Application - Overview
 
 This is the first project of the "React" course within "The Odin Project".
 

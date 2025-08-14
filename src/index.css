@@ -1,4 +1,13 @@
-@import url(./assets/stylesheets/fonts.css);
+@font-face {
+    font-family: Inter;
+    src: url(./assets/fonts/InterVariable.woff2);
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(./assets/fonts/InterVariable-Italic.woff2);
+    font-style: italic;
+}
 
 :root {
     --font-stack:
@@ -21,6 +30,14 @@
     --accent-color: #a52000;
 
     --visited-link: #5c3880;
+
+    --primary-low-opacity: rgba(0, 82, 166, 0.35);
+
+    --glass-text1: #0f161a;
+    --glass-background1: rgba(0,82,166,0.6);
+    --glass-border1: 1px solid rgba(0,82,166,0.3);
+
+    --button-shadow1: #006eed;
 }
 
 :root:has(body.dark-mode) {
@@ -30,10 +47,18 @@
     --primary-color: #58a9f7;
     --secondary-color: #78aad3;
     --accent-color: #8e1c00;
+
+    --primary-low-opacity: rgba(88, 169, 247, 0.35);
+
+    --glass-text1: #eff5f9;
+    --glass-background1: rgba(88,169,247,0.35);
+    --glass-border1: 1px solid rgba(88,169,247,0.175);
+
+    --button-shadow1: #81bef7;
 }
 
 body {
-    font-family: var(--font-stack);
+    font-family: Inter, var(--font-stack);
     background-color: var(--background-color);
     color: var(--text-main);
 }
