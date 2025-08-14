@@ -30,14 +30,11 @@
     --accent-color: #a52000;
 
     --visited-link: #5c3880;
+    --confirm-green: #00e34c;
 
     --primary-low-opacity: rgba(0, 82, 166, 0.35);
 
-    --glass-text1: #0f161a;
-    --glass-background1: rgba(0,82,166,0.6);
-    --glass-border1: 1px solid rgba(0,82,166,0.3);
-
-    --button-shadow1: #006eed;
+    --background-shadow: 0 1px 7.75px 2px #c8c8c8;
 }
 
 :root:has(body.dark-mode) {
@@ -50,11 +47,7 @@
 
     --primary-low-opacity: rgba(88, 169, 247, 0.35);
 
-    --glass-text1: #eff5f9;
-    --glass-background1: rgba(88,169,247,0.35);
-    --glass-border1: 1px solid rgba(88,169,247,0.175);
-
-    --button-shadow1: #81bef7;
+    --background-shadow: 0 1px 7.75px 2px #080c10;;
 }
 
 body {

@@ -1,12 +1,18 @@
 .notice-cont {
-    color: var(--glass-text1);
-    background: var(--glass-background1);
-    border: var(--glass-border1);
+    background: var(--background-color);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 
     padding: 0.5rem;
     border-radius: 0.45rem;
+
+    box-shadow: var(--background-shadow);
+}
+
+@media (min-width: 48rem) {
+    .notice-cont {
+        padding: 1rem;
+    }
 }
 
 .notice-cont > h1 {
@@ -37,9 +43,9 @@
 }
 
 .close-notice {
-    color: var(--text-alt);
+    color: #222c35;
     border: none;
-    background-color: var(--primary-color);
+    background-color: var(--confirm-green);
     padding: 0.25rem 1.25rem;
     font-weight: 600;
     border-radius: 0.35rem;
