@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 import '../../assets/stylesheets/MainCont.css';
 import AppNotice from './AppNotice';
+import Form from './Form';
 
-export default function MainCont() {
+export default function MainCont({ theme }) {
     const [noticeClosed, closeNotice] = useState(false);
 
     // NOTE: can only dismiss the notice
@@ -12,12 +13,16 @@ export default function MainCont() {
         closeNotice(true);
     }
 
+    function submissionHandler() {
+        console.log('attempted to submit the form');
+    }
+
     return (
         <main>
             {noticeClosed ? (
-                console.log('notice closed render form')
+                <Form  submissionHandler={submissionHandler} />
             ) : (
-                <AppNotice handleNotice={handleNotice} />
+                <AppNotice handleNotice={handleNotice} theme={theme} />
             )}
         </main>
     );

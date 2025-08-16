@@ -61,3 +61,8 @@ body {
     flex-direction: column;
     display: flex;
 }
+
+.inline-img {
+    display: inline-block;
+    vertical-align: middle;
+}
