@@ -1,0 +1,28 @@
+form {
+    background: var(--background-color);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    padding: 0.5rem;
+    border-radius: 0.45rem;
+
+    box-shadow: var(--background-shadow);
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-heading {
+    text-align: center;
+    font-size: var(--fs-xl);
+}
+
+.required-notice {
+    font-size: var(--fs-sm);
+    font-style: italic;
+    text-align: center;
+    color: var(--accent-color);
+}
