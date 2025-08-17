@@ -7,11 +7,20 @@ import {
     EductionItem,
     SkillItem,
 } from '../utilities/form-data';
-import { initializePersonalInfo, createInfoInputs } from '../utilities/form-utilities';
+import {
+    initializePersonalInfo,
+    createInfoInputs,
+    getCollapseImgSrc,
+    findCollapseTarget,
+} from '../utilities/form-utilities';
 import '../../assets/stylesheets/Form.css';
 
-function Info() {
+function Info({ theme }) {
     const [info, setInfo] = useState(initializePersonalInfo());
+    const [collapsed, collapseSection] = useState(false);
+    const [ collapseSectionHeight, setCollapseSectionHeight ] = useState(0);
+
+    const collapseImgSrc = getCollapseImgSrc(theme, collapsed);
 
     function updateInfo(event, property) {
         const newVal = event.target.value;
@@ -19,10 +28,51 @@ function Info() {
         setInfo(newInfo);
     }
 
+    function updateCollapse(event) {
+        event.preventDefault();
+
+        const targetCont = findCollapseTarget(event.target);
+        // Will always be the true height of the section
+        let sectionHeight = collapseSectionHeight;
+        // Update this components collapsible section height only if said section is expanded
+        if (targetCont.offsetHeight > 0) {
+            sectionHeight = targetCont.offsetHeight;
+            setCollapseSectionHeight(sectionHeight);
+        }
+        
+        document.documentElement.style.setProperty('--collapse-height', `${sectionHeight}px`);
+
+        if (collapsed) {
+            targetCont.classList.add('expand-cont');
+            targetCont.classList.remove('collapse-cont');
+        } else {
+            targetCont.classList.add('collapse-cont');
+            targetCont.classList.remove('expand-cont');
+        }
+        setTimeout(() => {
+            collapseSection(!collapsed);
+        }, 650);
+    }
+
     return (
         <div className='form-section'>
-            <h2 className='form-section-heading'>Personal Information</h2>
-            {createInfoInputs(info, updateInfo)}
+            <h2 className='form-section-heading'>
+                <span>Personal Information</span>
+                <button
+                    aria-label={
+                        collapsed ? 'Expand Section' : 'Collapse Section'
+                    }
+                    className='img-button'
+                    onClick={(event) => updateCollapse(event)}
+                >
+                    <img
+                        src={collapseImgSrc}
+                        alt={collapsed ? 'Expand Section' : 'Collapse Section'}
+                        className='collapse-icon'
+                    />
+                </button>
+            </h2>
+            <div className="form-inputs">{createInfoInputs(info, updateInfo)}</div>
         </div>
     );
 }
@@ -80,13 +130,17 @@ function Summary() {
 function FormActions({ handleSubmission, handlePreview }) {
     return (
         <div className='form-buttons-cont'>
-            <button className='submit-form' onClick={handleSubmission}>Save</button>
-            <button className='preview-submission' onClick={handlePreview}>Preview</button>
+            <button className='submit-form' onClick={handleSubmission}>
+                Save
+            </button>
+            <button className='preview-submission' onClick={handlePreview}>
+                Preview
+            </button>
         </div>
     );
 }
 
-export default function Form({ submissionHandler }) {
+export default function Form({ theme }) {
     function handleSubmission(event) {
         event.preventDefault();
         console.log('placeholder function for submission');
@@ -105,7 +159,7 @@ export default function Form({ submissionHandler }) {
                     Required fields are marked with an asterisk (*)
                 </p>
             </div>
-            <Info />
+            <Info theme={theme} />
             <Experience />
             <Projects />
             <Eduction />

@@ -1,5 +1,10 @@
 import { PersonalInfo, EductionItem, SkillItem } from '../utilities/form-data';
 
+import plusLightSvg from '../../assets/media/icons/plus-light-mode.svg';
+import plusDarkSvg from '../../assets/media/icons/plus-dark-mode.svg';
+import minusLightSvg from '../../assets/media/icons/minus-light-mode.svg';
+import minusDarkSvg from '../../assets/media/icons/minus-dark-mode.svg';
+
 export function initializePersonalInfo() {
     return new PersonalInfo('', '', '', '', '', '', '');
 }
@@ -9,6 +14,14 @@ export function createInfoInputs(infoObj, changeCallback) {
         let inputType;
         let label;
         const requiredFields = ['fullName', 'email', 'position'];
+        const placeholders = {
+            fullName: 'E.g., John Doe',
+            phoneNumber: 'E.g., +1 800 000000',
+            email: 'E.g., example@vendor.tld',
+            location: 'E.g., Austin, Texas',
+            linkedInProfile: 'E.g., https://www.linkedin.com/in/johndoe',
+            position: 'E.g., Fullstack Web Developer',
+        };
         switch (key) {
             case 'email':
                 inputType = 'email';
@@ -50,10 +63,37 @@ export function createInfoInputs(infoObj, changeCallback) {
                     required={required}
                     value={infoObj[key]}
                     onChange={(event) => changeCallback(event, key)}
+                    placeholder={placeholders[key]}
                 />
             </div>
         );
     });
 
     return inputList;
+}
+
+export function getCollapseImgSrc(theme, collapsed) {
+    if (theme === 'light' && collapsed) {
+        return plusLightSvg;
+    } 
+
+    if (theme === 'light' && !collapsed) {
+        return minusLightSvg;
+    }
+
+    if (theme === 'dark' && collapsed) {
+        return plusDarkSvg;
+    }
+
+    return minusDarkSvg;
+}
+
+export function findCollapseTarget(startElement) {
+    
+    if (startElement.nodeName === 'BUTTON') {
+        return startElement.parentNode.parentNode.querySelector('.form-inputs');
+    }
+    if (startElement.nodeName === 'IMG') {
+        return startElement.parentNode.parentNode.parentNode.querySelector('.form-inputs');
+    }
 }
