@@ -36,8 +36,12 @@
     max-width: 65ch;
 }
 
+.notice-item:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
 .button-cont {
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
     display: flex;
     justify-content: center;
 }

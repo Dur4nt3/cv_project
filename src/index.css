@@ -22,6 +22,8 @@
     --fs-xxl: clamp(2.44rem, 2.18vi + 2.01rem, 3.75rem);
     --fs-xxxl: clamp(3.05rem, 3.24vi + 2.4rem, 5rem);
 
+    color-scheme: light;
+
     --text-main: #222c35;
     --text-alt: #eff5f9;
     --background-color: #f3f9fd;
@@ -38,6 +40,8 @@
 }
 
 :root:has(body.dark-mode) {
+    color-scheme: dark;
+
     --text-main: #eff5f9;
     --text-alt: #222c35;
     --background-color: #0b0f16;

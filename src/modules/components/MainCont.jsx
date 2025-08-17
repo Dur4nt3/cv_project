@@ -4,7 +4,7 @@ import '../../assets/stylesheets/MainCont.css';
 import AppNotice from './AppNotice';
 import Form from './Form';
 
-export default function MainCont({ theme }) {
+export default function MainCont() {
     const [noticeClosed, closeNotice] = useState(false);
 
     // NOTE: can only dismiss the notice
@@ -22,7 +22,7 @@ export default function MainCont({ theme }) {
             {noticeClosed ? (
                 <Form  submissionHandler={submissionHandler} />
             ) : (
-                <AppNotice handleNotice={handleNotice} theme={theme} />
+                <AppNotice handleNotice={handleNotice} />
             )}
         </main>
     );

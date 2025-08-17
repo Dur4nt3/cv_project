@@ -7,15 +7,22 @@ import {
     EductionItem,
     SkillItem,
 } from '../utilities/form-data';
-import { initializePersonalInfo } from '../utilities/form-utilities';
+import { initializePersonalInfo, createInfoInputs } from '../utilities/form-utilities';
 import '../../assets/stylesheets/Form.css';
 
 function Info() {
     const [info, setInfo] = useState(initializePersonalInfo());
 
+    function updateInfo(event, property) {
+        const newVal = event.target.value;
+        const newInfo = { ...info, [property]: newVal };
+        setInfo(newInfo);
+    }
+
     return (
         <div className='form-section'>
             <h2 className='form-section-heading'>Personal Information</h2>
+            {createInfoInputs(info, updateInfo)}
         </div>
     );
 }
@@ -73,18 +80,20 @@ function Summary() {
 function FormActions({ handleSubmission, handlePreview }) {
     return (
         <div className='form-buttons-cont'>
-            <button className='submit-form'>Submit</button>
-            <button className='preview-submission'>Preview</button>
+            <button className='submit-form' onClick={handleSubmission}>Save</button>
+            <button className='preview-submission' onClick={handlePreview}>Preview</button>
         </div>
     );
 }
 
 export default function Form({ submissionHandler }) {
-    function handleSubmission() {
+    function handleSubmission(event) {
+        event.preventDefault();
         console.log('placeholder function for submission');
     }
 
-    function handlePreview() {
+    function handlePreview(event) {
+        event.preventDefault();
         console.log('placeholder function for preview');
     }
 

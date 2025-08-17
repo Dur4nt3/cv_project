@@ -32,7 +32,7 @@ function App() {
                 changeTheme={handleThemeChange}
             />
             <Header />
-            <MainCont theme={theme} />
+            <MainCont />
             <Footer imgSrc={theme === 'light' ? ghMarkLight : ghMarkDark} />
         </>
     );
