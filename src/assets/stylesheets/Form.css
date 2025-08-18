@@ -75,7 +75,7 @@ body.dark-mode .submit-form {
     flex-direction: column;
 }
 
-.form-inputs > *:not(:last-child) {
+.form-inputs > *:not(:last-child), .experience-segment > *:not(:last-child) {
     margin-bottom: 1rem;
 }
 
