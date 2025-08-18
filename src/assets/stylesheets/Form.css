@@ -39,7 +39,8 @@ form {
     gap: 0.75rem;
 }
 
-.form-buttons-cont > * {
+.form-buttons-cont > *,
+.experience-control-buttons > * {
     cursor: pointer;
     color: var(--text-alt);
     border-radius: 0.35rem;
@@ -49,20 +50,24 @@ form {
     transition: 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.form-buttons-cont > *:hover {
+.form-buttons-cont > *:hover,
+.experience-control-buttons > *:hover {
     transform: translateY(-0.15rem);
 }
 
-.form-buttons-cont > *:active {
+.form-buttons-cont > *:active,
+.experience-control-buttons > *:hover {
     filter: brightness(1.15);
 }
 
-.submit-form {
+.submit-form,
+.add-experience-segment {
     color: var(--text-main);
     background-color: var(--confirm-green);
 }
 
-body.dark-mode .submit-form {
+body.dark-mode .submit-form,
+body.dark-mode .add-experience-segment {
     color: var(--text-alt);
 }
 
@@ -75,7 +80,8 @@ body.dark-mode .submit-form {
     flex-direction: column;
 }
 
-.form-inputs > *:not(:last-child), .experience-segment > *:not(:last-child) {
+.form-inputs > *:not(:last-child),
+.experience-segment > *:not(:last-child) {
     margin-bottom: 1rem;
 }
 
@@ -107,7 +113,7 @@ body.dark-mode .submit-form {
     }
 }
 
-.form-label:has(+input:focus)::before {
+.form-label:has(+ input:focus)::before {
     transform: scale(1) skewX(-45deg);
 }
 
@@ -162,7 +168,7 @@ body.dark-mode .form-input::placeholder {
     0% {
         height: 0;
     }
-    
+
     99% {
         height: var(--collapse-height);
     }
@@ -187,4 +193,20 @@ body.dark-mode .form-input::placeholder {
     background: transparent;
     vertical-align: middle;
     cursor: pointer;
+}
+
+.experience-control-buttons {
+    margin-top: 1rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.remove-experience-segment {
+    background-color: var(--accent-color);
+}
+
+body.dark-mode .remove-experience-segment {
+    color: var(--text-main)
 }

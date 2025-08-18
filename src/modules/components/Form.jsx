@@ -82,7 +82,23 @@ export default function Form({ theme }) {
     }
 
     function updateExperience(event, itemId, property) {
-        const newVal = event.target.value;
+        let newVal = event.target.value;
+
+        if (property === 'positionDescription') {
+            const descId = event.target.id;
+            // Position description is empty
+            if (Object.keys(experience[itemId][property]).length === 0) {
+                newVal = {
+                    [descId]: event.target.value,
+                };
+            } else {
+                newVal = {
+                    ...experience[itemId][property],
+                    [descId]: event.target.value,
+                };
+            }
+        }
+
         const newExp = {
             ...experience,
             [itemId]: { ...experience[itemId], [property]: newVal },

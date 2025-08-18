@@ -15,7 +15,7 @@ export function initializePersonalInfo() {
 }
 
 export function initializeExperienceItem() {
-    return new ExperienceItem('', '', '', '', '', '', '');
+    return new ExperienceItem('','','','','', {});
 }
 
 export function createInfoInputs(infoObj, changeCallback) {
@@ -141,4 +141,10 @@ export function updateCollapse(
     setTimeout(() => {
         collapseSection(!collapsed);
     }, 650);
+}
+
+export function createPositionDescription(positionDescription, itemId) {
+    return <div className="position-description" key={itemId}>
+        <h4 className="position-description-header">Position Description</h4>
+    </div>
 }

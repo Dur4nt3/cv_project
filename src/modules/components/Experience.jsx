@@ -1,9 +1,6 @@
 import { useState } from 'react';
 
-import {
-    getCollapseImgSrc,
-    updateCollapse,
-} from '../utilities/form-utilities';
+import { getCollapseImgSrc, updateCollapse } from '../utilities/form-utilities';
 import ExperienceSegment from './ExperienceSegment';
 
 export default function Experience({ theme, experience, updateExperience }) {
@@ -47,6 +44,13 @@ export default function Experience({ theme, experience, updateExperience }) {
                         updateExperience={updateExperience}
                     />
                 ))}
+
+                <div className='experience-control-buttons'>
+                    <button className='add-experience-segment'>Add</button>
+                    <button className='remove-experience-segment'>
+                        Remove
+                    </button>
+                </div>
             </div>
         </div>
     );
