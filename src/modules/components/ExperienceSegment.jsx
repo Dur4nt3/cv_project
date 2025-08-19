@@ -1,16 +1,12 @@
-import { useState } from 'react';
 import { createPositionDescription } from '../utilities/form-utilities';
 
 export default function ExperienceSegment({
+    theme,
     itemId,
     experienceItem,
     updateExperience,
+    addDescriptionBullets,
 }) {
-
-    function handleDescriptionBullets(action) {
-        console.log('add/remove description bullets');
-    }
-
     return (
         <div className='experience-segment' id={itemId}>
             <h3 className='experience-segment-heading'>
@@ -20,7 +16,8 @@ export default function ExperienceSegment({
                 if (key === 'positionDescription') {
                     return createPositionDescription(
                         experienceItem[key],
-                        itemId
+                        itemId,
+                        theme
                     );
                 }
 

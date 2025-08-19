@@ -11,49 +11,16 @@ import {
     initializePersonalInfo,
     initializeExperienceItem,
 } from '../utilities/form-utilities';
+import { extractDescIdNumber } from '../utilities/misc-utilities';
+
 import Info from './Info';
 import Experience from './Experience';
+import Projects from './Projects';
+import Eduction from './Eduction';
+import Skills from './Skills';
+import Summary from './Summary';
+
 import '../../assets/stylesheets/Form.css';
-
-function Projects() {
-    // const [projects, setProjects] = useState(null);
-
-    return (
-        <div className='form-section'>
-            <h2 className='form-section-heading'>Projects</h2>
-        </div>
-    );
-}
-
-function Eduction() {
-    // const [eduction, setEducation] = useState(null);
-
-    return (
-        <div className='form-section'>
-            <h2 className='form-section-heading'>Eduction</h2>
-        </div>
-    );
-}
-
-function Skills() {
-    // const [skills, setSkills] = useState(null);
-
-    return (
-        <div className='form-section'>
-            <h2 className='form-section-heading'>Skills</h2>
-        </div>
-    );
-}
-
-function Summary() {
-    // const [summary, setSummary] = useState('');
-
-    return (
-        <div className='form-section'>
-            <h2 className='form-section-heading'>Summary</h2>
-        </div>
-    );
-}
 
 function FormActions({ handleSubmission, handlePreview }) {
     return (
@@ -103,6 +70,28 @@ export default function Form({ theme }) {
         const newExp = {
             ...experience,
             [itemId]: { ...experience[itemId], [property]: newVal },
+        };
+        setExperience(newExp);
+    }
+
+    function addDescriptionBullets(itemId) {
+        const idList = Object.keys(experience[itemId]);
+        let newDescId;
+        if (idList.length === 0) {
+            newDescId = `${itemId}-desc1`;
+        } else {
+            const latestId = idList[idList.length - 1];
+            newDescId = `${itemId}-desc${extractDescIdNumber(latestId) + 1}`;
+        }
+        const newExp = {
+            ...experience,
+            [itemId]: {
+                ...experience[itemId],
+                positionDescription: {
+                    ...experience[itemId].positionDescription,
+                    [newDescId]: '',
+                },
+            },
         };
         setExperience(newExp);
     }
@@ -157,6 +146,7 @@ export default function Form({ theme }) {
                 updateExperience={updateExperience}
                 addExperienceItem={addExperienceItem}
                 removeExperienceItem={removeExperienceItem}
+                addDescriptionBullets={addDescriptionBullets}
             />
             <Projects />
             <Eduction />

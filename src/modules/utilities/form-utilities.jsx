@@ -4,18 +4,21 @@ import {
     EductionItem,
     SkillItem,
 } from '../utilities/form-data';
+import { positionDescriptionTooltip } from './custom-tooltips';
 
 import plusLightSvg from '../../assets/media/icons/plus-light-mode.svg';
 import plusDarkSvg from '../../assets/media/icons/plus-dark-mode.svg';
 import minusLightSvg from '../../assets/media/icons/minus-light-mode.svg';
 import minusDarkSvg from '../../assets/media/icons/minus-dark-mode.svg';
+import questionLightSvg from '../../assets/media/icons/question-light-mode.svg';
+import questionDarkSvg from '../../assets/media/icons/question-dark-mode.svg';
 
 export function initializePersonalInfo() {
     return new PersonalInfo('', '', '', '', '', '', '');
 }
 
 export function initializeExperienceItem() {
-    return new ExperienceItem('','','','','', {});
+    return new ExperienceItem('', '', '', '', '', {});
 }
 
 export function createInfoInputs(infoObj, changeCallback) {
@@ -143,8 +146,34 @@ export function updateCollapse(
     }, 650);
 }
 
-export function createPositionDescription(positionDescription, itemId) {
-    return <div className="position-description" key={itemId}>
-        <h4 className="position-description-header">Position Description</h4>
-    </div>
+export function createPositionDescription(positionDescription, itemId, theme) {
+    const helpId = `${itemId}-description-help`;
+
+    return (
+        <div className='position-description' key={itemId}>
+            <h4 className='position-description-header'>
+                <span>Position Description</span>
+                <button
+                    className='img-button position-description-help'
+                    aria-label='how to fill position description'
+                    id={helpId}
+                    data-tooltip-id={helpId}
+                    onClick={(event) => {
+                        event.preventDefault();
+                    }}
+                >
+                    <img
+                        src={
+                            theme === 'light'
+                                ? questionLightSvg
+                                : questionDarkSvg
+                        }
+                        alt='how to fill position description'
+                        className='inline-img'
+                    />
+                </button>
+                {positionDescriptionTooltip(helpId)}
+            </h4>
+        </div>
+    );
 }

@@ -9,6 +9,7 @@ export default function Experience({
     updateExperience,
     addExperienceItem,
     removeExperienceItem,
+    addDescriptionBullets,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -45,9 +46,11 @@ export default function Experience({
                 {Object.keys(experience).map((itemId) => (
                     <ExperienceSegment
                         key={itemId}
+                        theme={theme}
                         itemId={itemId}
                         experienceItem={experience[itemId]}
                         updateExperience={updateExperience}
+                        addDescriptionBullets={addDescriptionBullets}
                     />
                 ))}
 
