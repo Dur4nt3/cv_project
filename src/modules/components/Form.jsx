@@ -81,6 +81,7 @@ export default function Form({ theme }) {
         setInfo(newInfo);
     }
 
+    // Use only for updating EXISTING values
     function updateExperience(event, itemId, property) {
         let newVal = event.target.value;
 
@@ -103,6 +104,31 @@ export default function Form({ theme }) {
             ...experience,
             [itemId]: { ...experience[itemId], [property]: newVal },
         };
+        setExperience(newExp);
+    }
+
+    function addExperienceItem() {
+        const idList = Object.keys(experience);
+        const latestId = idList[idList.length - 1];
+        const newId = Number(latestId.slice(3)) + 1;
+        const newExp = {
+            ...experience,
+            [`exp${newId}`]: initializeExperienceItem(),
+        };
+
+        setExperience(newExp);
+    }
+
+    function removeExperienceItem() {
+        const idList = Object.keys(experience);
+        if (idList.length === 1) {
+            return;
+        }
+
+        const latestId = idList[idList.length - 1];
+        const newExp = { ...experience };
+        delete newExp[latestId];
+
         setExperience(newExp);
     }
 
@@ -129,6 +155,8 @@ export default function Form({ theme }) {
                 theme={theme}
                 experience={experience}
                 updateExperience={updateExperience}
+                addExperienceItem={addExperienceItem}
+                removeExperienceItem={removeExperienceItem}
             />
             <Projects />
             <Eduction />

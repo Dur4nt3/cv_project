@@ -3,7 +3,13 @@ import { useState } from 'react';
 import { getCollapseImgSrc, updateCollapse } from '../utilities/form-utilities';
 import ExperienceSegment from './ExperienceSegment';
 
-export default function Experience({ theme, experience, updateExperience }) {
+export default function Experience({
+    theme,
+    experience,
+    updateExperience,
+    addExperienceItem,
+    removeExperienceItem,
+}) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
 
@@ -46,8 +52,23 @@ export default function Experience({ theme, experience, updateExperience }) {
                 ))}
 
                 <div className='experience-control-buttons'>
-                    <button className='add-experience-segment'>Add</button>
-                    <button className='remove-experience-segment'>
+                    <button
+                        className='add-experience-segment'
+                        onClick={(event) => {
+                            event.preventDefault();
+                            addExperienceItem();
+                        }}
+                    >
+                        Add
+                    </button>
+                    <button
+                        className='remove-experience-segment'
+                        onClick={(event) => {
+                            event.preventDefault();
+                            removeExperienceItem();
+                        }}
+                        disabled={Object.keys(experience).length === 1 && true}
+                    >
                         Remove
                     </button>
                 </div>

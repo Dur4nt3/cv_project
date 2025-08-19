@@ -6,7 +6,6 @@ export default function ExperienceSegment({
     experienceItem,
     updateExperience,
 }) {
-    const [descriptionBullets, updateDescriptionBullets] = useState(1);
 
     function handleDescriptionBullets(action) {
         console.log('add/remove description bullets');

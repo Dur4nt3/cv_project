@@ -51,12 +51,13 @@ form {
 }
 
 .form-buttons-cont > *:hover,
-.experience-control-buttons > *:hover {
+.add-experience-segment:hover,
+.remove-experience-segment:not(:disabled):hover {
     transform: translateY(-0.15rem);
 }
 
 .form-buttons-cont > *:active,
-.experience-control-buttons > *:hover {
+.experience-control-buttons > *:active {
     filter: brightness(1.15);
 }
 
@@ -205,6 +206,11 @@ body.dark-mode .form-input::placeholder {
 
 .remove-experience-segment {
     background-color: var(--accent-color);
+}
+
+.remove-experience-segment:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
 }
 
 body.dark-mode .remove-experience-segment {
