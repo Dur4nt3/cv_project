@@ -1,13 +1,6 @@
 import { useState } from 'react';
 
 import {
-    PersonalInfo,
-    ExperienceItem,
-    ProjectItem,
-    EductionItem,
-    SkillItem,
-} from '../utilities/form-data';
-import {
     initializePersonalInfo,
     initializeExperienceItem,
 } from '../utilities/form-utilities';
@@ -19,21 +12,12 @@ import Projects from './Projects';
 import Eduction from './Eduction';
 import Skills from './Skills';
 import Summary from './Summary';
+import FormActions from './FormActions';
+import ClearNotice from './ClearNotice';
 
 import '../../assets/stylesheets/Form.css';
 
-function FormActions({ handleSubmission, handlePreview }) {
-    return (
-        <div className='form-buttons-cont'>
-            <button className='submit-form' onClick={handleSubmission}>
-                Save
-            </button>
-            <button className='preview-submission' onClick={handlePreview}>
-                Preview
-            </button>
-        </div>
-    );
-}
+import clearDark from '../../assets/media/icons/clear-dark-mode.svg';
 
 export default function Form({ theme }) {
     const [info, setInfo] = useState(initializePersonalInfo());
@@ -41,6 +25,7 @@ export default function Form({ theme }) {
     const [experience, setExperience] = useState({
         exp1: initializeExperienceItem(),
     });
+    const [clearNoticeShown, updateClearNoticeStatus] = useState(false);
 
     function updateInfo(event, property) {
         const newVal = event.target.value;
@@ -145,10 +130,46 @@ export default function Form({ theme }) {
         console.log('placeholder function for preview');
     }
 
+    function clearAll() {
+        setInfo(initializePersonalInfo());
+
+        const newExp = { ...experience };
+        for (const key of Object.keys(newExp)) {
+            newExp[key] = initializeExperienceItem();
+        }
+
+        setExperience(newExp);
+
+        updateClearNoticeStatus(false);
+    }
+
     return (
         <form>
+            {clearNoticeShown && (
+                <ClearNotice
+                    updateClearNoticeStatus={updateClearNoticeStatus}
+                    clearAll={clearAll}
+                />
+            )}
             <div className='form-header'>
-                <h1 className='form-heading'>CV Details</h1>
+                <h1 className='form-heading'>
+                    <span>CV Details</span>
+                    <button
+                        className='img-button clear-all-data'
+                        aria-label='clear all form data'
+                        onClick={(event) => {
+                            event.preventDefault();
+                            updateClearNoticeStatus(true);
+                        }}
+                    >
+                        <img
+                            // Better contrast with this version
+                            // Therefore, no adjustment needed for themes
+                            src={clearDark}
+                            alt='clear all form data'
+                        />
+                    </button>
+                </h1>
                 <p className='required-notice'>
                     Required fields are marked with an asterisk (*)
                 </p>
