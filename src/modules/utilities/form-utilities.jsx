@@ -4,14 +4,11 @@ import {
     EductionItem,
     SkillItem,
 } from '../utilities/form-data';
-import { positionDescriptionTooltip } from './custom-tooltips';
 
 import plusLightSvg from '../../assets/media/icons/plus-light-mode.svg';
 import plusDarkSvg from '../../assets/media/icons/plus-dark-mode.svg';
 import minusLightSvg from '../../assets/media/icons/minus-light-mode.svg';
 import minusDarkSvg from '../../assets/media/icons/minus-dark-mode.svg';
-import questionLightSvg from '../../assets/media/icons/question-light-mode.svg';
-import questionDarkSvg from '../../assets/media/icons/question-dark-mode.svg';
 
 export function initializePersonalInfo() {
     return new PersonalInfo('', '', '', '', '', '', '');
@@ -19,69 +16,6 @@ export function initializePersonalInfo() {
 
 export function initializeExperienceItem() {
     return new ExperienceItem('', '', '', '', '', {});
-}
-
-export function createInfoInputs(infoObj, changeCallback) {
-    const inputList = Object.keys(infoObj).map((key) => {
-        let inputType;
-        let label;
-        const requiredFields = ['fullName', 'email', 'position'];
-        const placeholders = {
-            fullName: 'E.g., John Doe',
-            phoneNumber: 'E.g., +1 800 000000',
-            email: 'E.g., example@vendor.tld',
-            location: 'E.g., Austin, Texas',
-            linkedInProfile: 'E.g., https://www.linkedin.com/in/johndoe',
-            position: 'E.g., Fullstack Web Developer',
-        };
-        switch (key) {
-            case 'email':
-                inputType = 'email';
-                label = 'Email';
-                break;
-
-            case 'linkedInProfile':
-                inputType = 'url';
-                label = 'LinkedIn Profile';
-                break;
-
-            case 'phoneNumber':
-                inputType = 'tel';
-                label = 'Phone Number';
-                break;
-
-            case 'fullName':
-                inputType = 'text';
-                label = 'Full Name';
-                break;
-
-            default:
-                inputType = 'text';
-                label = key.charAt(0).toUpperCase() + key.slice(1);
-        }
-
-        const required = requiredFields.includes(key);
-
-        return (
-            <div className='form-row' key={key}>
-                <label htmlFor={key} className='form-label'>
-                    {label}
-                    {required && <span className='required-indicator'>*</span>}
-                </label>
-                <input
-                    id={key}
-                    className='form-input'
-                    type={inputType}
-                    required={required}
-                    value={infoObj[key]}
-                    onChange={(event) => changeCallback(event, key)}
-                    placeholder={placeholders[key]}
-                />
-            </div>
-        );
-    });
-
-    return inputList;
 }
 
 export function getCollapseImgSrc(theme, collapsed) {
@@ -144,36 +78,4 @@ export function updateCollapse(
     setTimeout(() => {
         collapseSection(!collapsed);
     }, 650);
-}
-
-export function createPositionDescription(positionDescription, itemId, theme) {
-    const helpId = `${itemId}-description-help`;
-
-    return (
-        <div className='position-description' key={itemId}>
-            <h4 className='position-description-header'>
-                <span>Position Description</span>
-                <button
-                    className='img-button position-description-help'
-                    aria-label='how to fill position description'
-                    id={helpId}
-                    data-tooltip-id={helpId}
-                    onClick={(event) => {
-                        event.preventDefault();
-                    }}
-                >
-                    <img
-                        src={
-                            theme === 'light'
-                                ? questionLightSvg
-                                : questionDarkSvg
-                        }
-                        alt='how to fill position description'
-                        className='inline-img'
-                    />
-                </button>
-                {positionDescriptionTooltip(helpId)}
-            </h4>
-        </div>
-    );
 }

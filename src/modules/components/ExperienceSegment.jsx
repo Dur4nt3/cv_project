@@ -1,4 +1,4 @@
-import { createPositionDescription } from '../utilities/form-utilities';
+import createPositionDescription from '../utilities/create-position-description';
 
 export default function ExperienceSegment({
     theme,
@@ -6,6 +6,7 @@ export default function ExperienceSegment({
     experienceItem,
     updateExperience,
     addDescriptionBullets,
+    removeDescriptionBullets,
 }) {
     return (
         <div className='experience-segment' id={itemId}>
@@ -17,7 +18,10 @@ export default function ExperienceSegment({
                     return createPositionDescription(
                         experienceItem[key],
                         itemId,
-                        theme
+                        theme,
+                        addDescriptionBullets,
+                        removeDescriptionBullets,
+                        updateExperience
                     );
                 }
 

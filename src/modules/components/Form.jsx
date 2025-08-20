@@ -75,7 +75,7 @@ export default function Form({ theme }) {
     }
 
     function addDescriptionBullets(itemId) {
-        const idList = Object.keys(experience[itemId]);
+        const idList = Object.keys(experience[itemId].positionDescription);
         let newDescId;
         if (idList.length === 0) {
             newDescId = `${itemId}-desc1`;
@@ -93,6 +93,20 @@ export default function Form({ theme }) {
                 },
             },
         };
+        setExperience(newExp);
+    }
+
+    function removeDescriptionBullets(itemId) {
+        const idList = Object.keys(experience[itemId].positionDescription);
+        // Unlike experience items, allow a position to have no description
+        if (idList.length === 0) {
+            return;
+        }
+
+        const latestId = idList[idList.length - 1];
+        const newExp = { ...experience };
+        delete newExp[itemId].positionDescription[latestId];
+
         setExperience(newExp);
     }
 
@@ -147,6 +161,7 @@ export default function Form({ theme }) {
                 addExperienceItem={addExperienceItem}
                 removeExperienceItem={removeExperienceItem}
                 addDescriptionBullets={addDescriptionBullets}
+                removeDescriptionBullets={removeDescriptionBullets}
             />
             <Projects />
             <Eduction />

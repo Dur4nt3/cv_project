@@ -8,3 +8,9 @@ main {
     display: grid;
     place-items: center;
 }
+
+@media (min-width: 40rem) {
+    main {
+        padding: 0.5rem;
+    }
+}

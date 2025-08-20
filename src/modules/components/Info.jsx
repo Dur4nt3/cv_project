@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 import {
-    createInfoInputs,
     getCollapseImgSrc,
     updateCollapse,
 } from '../utilities/form-utilities';
+
+import createInfoInputs from '../utilities/create-info-inputs';
 
 export default function Info({ theme, info, updateInfo }) {
     const [collapsed, collapseSection] = useState(false);

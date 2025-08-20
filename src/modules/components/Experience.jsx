@@ -10,6 +10,7 @@ export default function Experience({
     addExperienceItem,
     removeExperienceItem,
     addDescriptionBullets,
+    removeDescriptionBullets,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -51,6 +52,7 @@ export default function Experience({
                         experienceItem={experience[itemId]}
                         updateExperience={updateExperience}
                         addDescriptionBullets={addDescriptionBullets}
+                        removeDescriptionBullets={removeDescriptionBullets}
                     />
                 ))}
 

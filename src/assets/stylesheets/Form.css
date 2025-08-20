@@ -40,7 +40,8 @@ form {
 }
 
 .form-buttons-cont > *,
-.experience-control-buttons > * {
+.experience-control-buttons > *,
+.position-description-control > * {
     cursor: pointer;
     color: var(--text-alt);
     border-radius: 0.35rem;
@@ -52,23 +53,28 @@ form {
 
 .form-buttons-cont > *:hover,
 .add-experience-segment:hover,
-.remove-experience-segment:not(:disabled):hover {
+.remove-experience-segment:not(:disabled):hover,
+.position-add-bullet:hover,
+.position-remove-bullet:not(:disabled):hover {
     transform: translateY(-0.15rem);
 }
 
 .form-buttons-cont > *:active,
-.experience-control-buttons > *:active {
+.experience-control-buttons > *:active,
+.position-description-control > *:active {
     filter: brightness(1.15);
 }
 
 .submit-form,
-.add-experience-segment {
+.add-experience-segment,
+.position-add-bullet {
     color: var(--text-main);
     background-color: var(--confirm-green);
 }
 
 body.dark-mode .submit-form,
-body.dark-mode .add-experience-segment {
+body.dark-mode .add-experience-segment,
+body.dark-mode .position-add-bullet {
     color: var(--text-alt);
 }
 
@@ -114,7 +120,8 @@ body.dark-mode .add-experience-segment {
     }
 }
 
-.form-label:has(+ input:focus)::before {
+.form-label:has(+ input:focus)::before,
+.form-label:has(+ textarea:focus)::before {
     transform: scale(1) skewX(-45deg);
 }
 
@@ -122,7 +129,7 @@ body.dark-mode .add-experience-segment {
     color: var(--accent-color);
 }
 
-.form-input {
+.form-input, textarea {
     font-size: var(--fs-sm);
     outline: none;
     background-color: var(--background-color);
@@ -130,6 +137,23 @@ body.dark-mode .add-experience-segment {
     caret-color: var(--text-main);
     border-bottom: 1.6px solid var(--text-main);
     max-width: 45ch;
+}
+
+textarea {
+    align-self: center;
+    border: 1.6px solid var(--text-main);
+    margin-top: 0.25rem;
+    width: 100%;
+    max-width: 45ch;
+    resize: vertical;
+    min-height: 5rem;
+    min-height: 5lh;
+}
+
+@media (min-width: 40rem) {
+    textarea {
+        max-width: 45ch;
+    }
 }
 
 .form-input::placeholder {
@@ -204,25 +228,42 @@ body.dark-mode .form-input::placeholder {
     gap: 0.75rem;
 }
 
-.remove-experience-segment {
+.remove-experience-segment,
+.position-remove-bullet {
     background-color: var(--accent-color);
 }
 
-.remove-experience-segment:disabled {
+.remove-experience-segment:disabled,
+.position-remove-bullet:disabled {
     opacity: 0.7;
+    filter: brightness(0.85);
     cursor: not-allowed;
 }
 
-body.dark-mode .remove-experience-segment:disabled {
+body.dark-mode .remove-experience-segment:disabled,
+body.dark-mode .position-remove-bullet:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-body.dark-mode .remove-experience-segment {
-    color: var(--text-main)
+body.dark-mode .remove-experience-segment,
+body.dark-mode .position-remove-bullet {
+    color: var(--text-main);
 }
 
 .position-description-header {
     display: flex;
     align-items: center;
+}
+
+.position-description-control {
+    margin: 1rem 1.5rem 0 1.5rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 0.25rem;
+}
+
+.position-description-control > * {
+    font-size: var(--fs-sm);
 }
