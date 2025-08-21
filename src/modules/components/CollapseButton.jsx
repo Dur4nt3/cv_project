@@ -1,4 +1,4 @@
-export function CollapseButton({
+export default function CollapseButton({
     label,
     collapsed,
     collapsedCallback,

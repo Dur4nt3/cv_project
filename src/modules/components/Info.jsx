@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { getCollapseImgSrc, updateCollapse } from '../utilities/form-utilities';
 
 import InfoInputs from './InfoInputs';
-import { CollapseButton } from './CollapseButton';
+import CollapseButton from './CollapseButton';
 
 export default function Info({ theme, info, updateInfo }) {
     const [collapsed, collapseSection] = useState(false);

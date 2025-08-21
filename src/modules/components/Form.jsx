@@ -6,6 +6,7 @@ import {
 } from '../utilities/form-utilities';
 import { extractDescIdNumber } from '../utilities/misc-utilities';
 
+import FormHeader from './FormHeader';
 import Info from './Info';
 import Experience from './Experience';
 import Projects from './Projects';
@@ -151,29 +152,10 @@ export default function Form({ theme }) {
                     clearAll={clearAll}
                 />
             )}
-            <div className='form-header'>
-                <h1 className='form-heading'>
-                    <span>CV Details</span>
-                    <button
-                        className='img-button clear-all-data'
-                        aria-label='clear all form data'
-                        onClick={(event) => {
-                            event.preventDefault();
-                            updateClearNoticeStatus(true);
-                        }}
-                    >
-                        <img
-                            // Better contrast with this version
-                            // Therefore, no adjustment needed for themes
-                            src={clearDark}
-                            alt='clear all form data'
-                        />
-                    </button>
-                </h1>
-                <p className='required-notice'>
-                    Required fields are marked with an asterisk (*)
-                </p>
-            </div>
+            <FormHeader
+                updateClearNotice={updateClearNoticeStatus}
+                imgSrc={clearDark}
+            />
             <Info theme={theme} info={info} updateInfo={updateInfo} />
             <Experience
                 theme={theme}

@@ -216,11 +216,6 @@ body.dark-mode .form-input::placeholder {
     }
 }
 
-.collapse-icon {
-    border-radius: 50%;
-    border: 2px solid var(--text-main);
-}
-
 .form-heading > .clear-all-data {
     padding: 0.5rem;
     border-radius: 50%;
@@ -228,12 +223,22 @@ body.dark-mode .form-input::placeholder {
 }
 
 .img-button {
+    font-size: var(--fs-sm);
     border: none;
     margin-left: 0.5rem;
     padding: 0;
     background: transparent;
     vertical-align: middle;
     cursor: pointer;
+}
+
+.form-section-heading {
+    display: flex;
+    align-items: center;
+}
+
+.form-section-heading img {
+    font-size: var(--fs-base);
 }
 
 .experience-control-buttons {
