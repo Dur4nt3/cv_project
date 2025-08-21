@@ -151,6 +151,7 @@ textarea {
 textarea {
     align-self: center;
     border: 1.6px solid var(--text-main);
+    border-radius: 0.35rem;
     margin-top: 0.25rem;
     width: 100%;
     max-width: 45ch;

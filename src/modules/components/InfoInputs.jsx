@@ -1,4 +1,4 @@
-export default function createInfoInputs(infoObj, changeCallback) {
+export default function InfoInputs({infoObj, changeCallback}) {
     const inputList = Object.keys(infoObj).map((key) => {
         let inputType;
         let label;

@@ -1,0 +1,113 @@
+import InfoTooltipButton from './InfoTooltipsButton';
+import { Tooltip } from 'react-tooltip';
+
+function PositionDescriptionTooltip({id}) {
+    return (
+        <Tooltip id={id} className='custom-tooltip'>
+            <div>
+                <p>Details the responsibilities of your role below.</p>
+                <p>
+                    Ensure to encompass the entire scope of your role whilst
+                    keeping it concise.
+                </p>
+                <p>
+                    You may use the "Add Bullet" button to add more bullets to
+                    your description.
+                </p>
+                <p>
+                    On the contrary, you may use the "Remove Bullet" button to
+                    remove the latest bullet.
+                </p>
+                <p>
+                    <b>NOTE:</b> Although the inputs below support it, refrain
+                    from using line breaks.
+                </p>
+            </div>
+        </Tooltip>
+    );
+}
+
+
+function PositionDescriptionBullets({
+    itemId,
+    positionDescription,
+    updateExperience,
+}) {
+    return (
+        <>
+            {Object.keys(positionDescription).map((description, index) => (
+                <div className='form-row' key={description}>
+                    <label htmlFor={description} className='form-label'>
+                        Description {index + 1}
+                    </label>
+                    <textarea
+                        id={description}
+                        value={positionDescription[description]}
+                        onChange={(event) =>
+                            updateExperience(
+                                event,
+                                itemId,
+                                'positionDescription'
+                            )
+                        }
+                        placeholder='Detail a portion of your responsibilities within the specified position'
+                    ></textarea>
+                </div>
+            ))}
+        </>
+    );
+}
+
+export default function PositionDescription({
+    positionDescription,
+    itemId,
+    theme,
+    addDescriptionBullets,
+    removeDescriptionBullets,
+    updateExperience,
+}) {
+    const helpId = `${itemId}-description-help`;
+
+    return (
+        <div className='position-description'>
+            <h4 className='position-description-header'>
+                <span>Position Description</span>
+                <InfoTooltipButton
+                    className='position-description-help'
+                    id={helpId}
+                    label='how to fill position description'
+                    theme={theme}
+                />
+                <PositionDescriptionTooltip id={helpId}/>
+            </h4>
+            <div className='position-description-bullets'>
+                <PositionDescriptionBullets
+                    itemId={itemId}
+                    positionDescription={positionDescription}
+                    updateExperience={updateExperience}
+                />
+            </div>
+            <div className='position-description-control'>
+                <button
+                    className='position-add-bullet'
+                    onClick={(event) => {
+                        event.preventDefault();
+                        addDescriptionBullets(itemId);
+                    }}
+                >
+                    Add Bullet
+                </button>
+                <button
+                    className='position-remove-bullet'
+                    onClick={(event) => {
+                        event.preventDefault();
+                        removeDescriptionBullets(itemId);
+                    }}
+                    disabled={Object.keys(positionDescription).length === 0}
+                >
+                    Remove Bullet
+                </button>
+            </div>
+        </div>
+    );
+}

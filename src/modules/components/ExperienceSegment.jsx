@@ -1,4 +1,4 @@
-import createPositionDescription from '../utilities/create-position-description';
+import PositionDescription from './PositionDescription';
 
 export default function ExperienceSegment({
     theme,
@@ -15,13 +15,16 @@ export default function ExperienceSegment({
             </h3>
             {Object.keys(experienceItem).map((key) => {
                 if (key === 'positionDescription') {
-                    return createPositionDescription(
-                        experienceItem[key],
-                        itemId,
-                        theme,
-                        addDescriptionBullets,
-                        removeDescriptionBullets,
-                        updateExperience
+                    return (
+                        <PositionDescription
+                            key={itemId}
+                            positionDescription={experienceItem[key]}
+                            itemId={itemId}
+                            theme={theme}
+                            addDescriptionBullets={addDescriptionBullets}
+                            removeDescriptionBullets={removeDescriptionBullets}
+                            updateExperience={updateExperience}
+                        />
                     );
                 }
 

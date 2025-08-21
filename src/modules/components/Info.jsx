@@ -5,7 +5,7 @@ import {
     updateCollapse,
 } from '../utilities/form-utilities';
 
-import createInfoInputs from '../utilities/create-info-inputs';
+import InfoInputs from './InfoInputs';
 
 export default function Info({ theme, info, updateInfo }) {
     const [collapsed, collapseSection] = useState(false);
@@ -40,7 +40,7 @@ export default function Info({ theme, info, updateInfo }) {
                 </button>
             </h2>
             <div className='form-inputs'>
-                {createInfoInputs(info, updateInfo)}
+                <InfoInputs infoObj={info} changeCallback={updateInfo} />
             </div>
         </div>
     );
