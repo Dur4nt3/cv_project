@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { getCollapseImgSrc, updateCollapse } from '../utilities/form-utilities';
 import ExperienceSegment from './ExperienceSegment';
+import { CollapseButton } from './CollapseButton';
 
 export default function Experience({
     theme,
@@ -16,32 +17,21 @@ export default function Experience({
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
 
     const collapseImgSrc = getCollapseImgSrc(theme, collapsed);
+    const collapseLabel = collapsed ? 'Expand Section' : 'Collapse Section';
 
     return (
         <div className='form-section'>
             <h2 className='form-section-heading'>
                 <span>Experience</span>
-                <button
-                    aria-label={
-                        collapsed ? 'Expand Section' : 'Collapse Section'
-                    }
-                    className='img-button'
-                    onClick={(event) =>
-                        updateCollapse(
-                            event,
-                            collapsed,
-                            collapseSection,
-                            collapseSectionHeight,
-                            setCollapseSectionHeight
-                        )
-                    }
-                >
-                    <img
-                        src={collapseImgSrc}
-                        alt={collapsed ? 'Expand Section' : 'Collapse Section'}
-                        className='collapse-icon'
-                    />
-                </button>
+                <CollapseButton
+                    label={collapseLabel}
+                    collapsed={collapsed}
+                    collapsedCallback={collapseSection}
+                    collapsedHeight={collapseSectionHeight}
+                    collapsedHeightCallback={setCollapseSectionHeight}
+                    updateCallback={updateCollapse}
+                    imgSrc={collapseImgSrc}
+                />
             </h2>
             <div className='form-inputs'>
                 {Object.keys(experience).map((itemId) => (
