@@ -79,3 +79,13 @@ export function updateCollapse(
         collapseSection(!collapsed);
     }, 650);
 }
+
+export function initializeToggledSections() {
+    return {
+        experience: true,
+        projects: false,
+        education: true,
+        skills: true,
+        summary: false
+    }
+}

@@ -4,6 +4,7 @@ import { getCollapseImgSrc, updateCollapse } from '../utilities/form-utilities';
 import ExperienceSegment from './ExperienceSegment';
 import CollapseButton from './CollapseButton';
 import InfoTooltipButton from './InfoTooltipsButton';
+import ToggleSection from './ToggleSection';
 import { Tooltip } from 'react-tooltip';
 
 function ExperienceTooltip({ id }) {
@@ -39,6 +40,8 @@ function ExperienceTooltip({ id }) {
 
 export default function Experience({
     theme,
+    toggled,
+    handleSectionToggle,
     experience,
     updateExperience,
     addExperienceItem,
@@ -74,8 +77,19 @@ export default function Experience({
                     theme={theme}
                 />
                 <ExperienceTooltip id={helpId} />
+                <ToggleSection
+                    handleSectionToggle={handleSectionToggle}
+                    section='experience'
+                    toggled={toggled}
+                />
             </h2>
-            <div className='form-inputs'>
+            <div
+                className={
+                    toggled === false
+                        ? 'form-inputs section-toggled-off'
+                        : 'form-inputs'
+                }
+            >
                 {Object.keys(experience).map((itemId) => (
                     <ExperienceSegment
                         key={itemId}

@@ -378,3 +378,7 @@ body.dark-mode .clear-data-button {
         opacity: 0;
     }
 }
+
+.section-toggled-off {
+    display: none;
+}

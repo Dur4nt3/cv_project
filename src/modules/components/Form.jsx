@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {
     initializePersonalInfo,
     initializeExperienceItem,
+    initializeToggledSections,
 } from '../utilities/form-utilities';
 import { extractDescIdNumber } from '../utilities/misc-utilities';
 
@@ -27,6 +28,9 @@ export default function Form({ theme }) {
         exp1: initializeExperienceItem(),
     });
     const [clearNoticeShown, updateClearNoticeStatus] = useState(false);
+    const [toggledSections, toggleSection] = useState(
+        initializeToggledSections()
+    );
 
     function updateInfo(event, property) {
         const newVal = event.target.value;
@@ -144,6 +148,12 @@ export default function Form({ theme }) {
         updateClearNoticeStatus(false);
     }
 
+    function handleSectionToggle(section) {
+        const newToggles = { ...toggledSections };
+        newToggles[section] = !(newToggles[section]);
+        toggleSection(newToggles);
+    }
+
     return (
         <form>
             {clearNoticeShown && (
@@ -159,6 +169,8 @@ export default function Form({ theme }) {
             <Info theme={theme} info={info} updateInfo={updateInfo} />
             <Experience
                 theme={theme}
+                toggled={toggledSections.experience}
+                handleSectionToggle={handleSectionToggle}
                 experience={experience}
                 updateExperience={updateExperience}
                 addExperienceItem={addExperienceItem}
