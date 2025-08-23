@@ -1,8 +1,7 @@
 import {
     PersonalInfo,
     ExperienceItem,
-    EductionItem,
-    SkillItem,
+    ProjectItem,
 } from '../utilities/form-data';
 
 import plusLightSvg from '../../assets/media/icons/plus-light-mode.svg';
@@ -16,6 +15,10 @@ export function initializePersonalInfo() {
 
 export function initializeExperienceItem() {
     return new ExperienceItem('', '', '', '', '', {});
+}
+
+export function initializeProjectItem() {
+    return new ProjectItem('', '', {});
 }
 
 export function getCollapseImgSrc(theme, collapsed) {
