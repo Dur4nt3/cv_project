@@ -1,14 +1,17 @@
 import InfoTooltipButton from './InfoTooltipsButton';
 import { Tooltip } from 'react-tooltip';
 
-function ProjectDescriptionTooltip({ id }) {
+function EducationDescriptionTooltip({ id }) {
     return (
         <Tooltip id={id} className='custom-tooltip'>
             <div>
-                <p>Explain your project below.</p>
+                <p>Detail your education below.</p>
                 <p>
-                    Ensure to encompass the entire scope of your project whilst
-                    keeping it concise.
+                    You may append additional information about your education.
+                </p>
+                <p>
+                    Whether it's your GPA (if high), relevant clubs you partook
+                    in, a high position you held, or relevant course work.
                 </p>
                 <p>
                     You may use the "Add Bullet" button to add more bullets to
@@ -27,12 +30,12 @@ function ProjectDescriptionTooltip({ id }) {
     );
 }
 
-function ProjectDescriptionBullets({
+function EducationDescriptionBullets({
     itemId,
     state,
     stateUpdater,
     description,
-    updateProjects,
+    updateEducation,
 }) {
     return (
         <>
@@ -45,7 +48,7 @@ function ProjectDescriptionBullets({
                         id={descriptionItem}
                         value={description[descriptionItem]}
                         onChange={(event) =>
-                            updateProjects(
+                            updateEducation(
                                 event,
                                 itemId,
                                 'description',
@@ -53,7 +56,7 @@ function ProjectDescriptionBullets({
                                 stateUpdater
                             )
                         }
-                        placeholder='Detail a portion of the scope of your project'
+                        placeholder='Append additional information about your education'
                     ></textarea>
                 </div>
             ))}
@@ -61,7 +64,7 @@ function ProjectDescriptionBullets({
     );
 }
 
-export default function ProjectDescription({
+export default function EducationDescription({
     description,
     itemId,
     theme,
@@ -69,34 +72,34 @@ export default function ProjectDescription({
     stateUpdater,
     addDescriptionBullets,
     removeDescriptionBullets,
-    updateProjects,
+    updateEducation,
 }) {
     const helpId = `${itemId}-description-help`;
 
     return (
-        <div className='project-description description-cont'>
-            <h4 className='project-description-header description-header'>
-                <span>Project Description</span>
+        <div className='education-description description-cont'>
+            <h4 className='education-description-header description-header'>
+                <span>Education Description</span>
                 <InfoTooltipButton
-                    className='project-description-help'
+                    className='education-description-help'
                     id={helpId}
-                    label='how to fill project description'
+                    label='how to fill education description'
                     theme={theme}
                 />
-                <ProjectDescriptionTooltip id={helpId} />
+                <EducationDescriptionTooltip id={helpId} />
             </h4>
-            <div className='project-description-bullets description-bullets'>
-                <ProjectDescriptionBullets
+            <div className='education-description-bullets description-bullets'>
+                <EducationDescriptionBullets
                     itemId={itemId}
                     state={state}
                     stateUpdater={stateUpdater}
                     description={description}
-                    updateProjects={updateProjects}
+                    updateEducation={updateEducation}
                 />
             </div>
-            <div className='project-description-control description-control-cont'>
+            <div className='education-description-control description-control-cont'>
                 <button
-                    className='project-add-bullet add-bullet-button'
+                    className='education-add-bullet add-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
                         addDescriptionBullets(itemId, state, stateUpdater);
@@ -105,7 +108,7 @@ export default function ProjectDescription({
                     Add Bullet
                 </button>
                 <button
-                    className='project-remove-bullet remove-bullet-button'
+                    className='education-remove-bullet remove-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
                         removeDescriptionBullets(itemId, state, stateUpdater);

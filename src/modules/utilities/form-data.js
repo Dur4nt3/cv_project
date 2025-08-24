@@ -42,9 +42,9 @@ export class ProjectItem {
     }
 }
 
-export class EductionItem {
-    constructor(institutionType, label, description) {
-        this.institutionType = institutionType;
+export class EducationItem {
+    constructor(institution, label, description) {
+        this.institution = institution;
         this.label = label;
         this.description = description;
     }

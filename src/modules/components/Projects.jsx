@@ -68,7 +68,7 @@ export default function Projects({
                 <InfoTooltipButton
                     className='project-help-button'
                     id={helpId}
-                    label='how to fill the experience section'
+                    label='how to fill the projects section'
                     theme={theme}
                 />
                 <ProjectTooltip id={helpId} />
@@ -98,9 +98,9 @@ export default function Projects({
                     />
                 ))}
 
-                <div className='projects-control-buttons'>
+                <div className='projects-control-buttons control-button-cont'>
                     <button
-                        className='add-projects-segment'
+                        className='add-projects-segment add-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
                             addProjectItem(projects, stateUpdater);
@@ -109,7 +109,7 @@ export default function Projects({
                         Add
                     </button>
                     <button
-                        className='remove-projects-segment'
+                        className='remove-projects-segment remove-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
                             removeProjectItem(projects, stateUpdater);

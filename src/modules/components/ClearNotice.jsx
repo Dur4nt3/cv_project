@@ -1,6 +1,18 @@
 export default function ClearNotice({ updateClearNoticeStatus, clearAll }) {
     return (
-        <div className='modal' tabIndex='0'>
+        <div
+            className='modal'
+            tabIndex='0'
+            onKeyDown={(event) => {
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    document
+                        .querySelector('.modal-content')
+                        .classList.add('exiting-modal');
+                    setTimeout(() => updateClearNoticeStatus(false), 500);
+                }
+            }}
+        >
             <div className='modal-content'>
                 <h1>Disclaimer!</h1>
                 <p>You have selected the "Clear All" button.</p>

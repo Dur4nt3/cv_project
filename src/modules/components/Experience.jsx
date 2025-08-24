@@ -104,9 +104,9 @@ export default function Experience({
                     />
                 ))}
 
-                <div className='experience-control-buttons'>
+                <div className='experience-control-buttons control-button-cont'>
                     <button
-                        className='add-experience-segment'
+                        className='add-experience-segment add-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
                             addExperienceItem(experience, stateUpdater);
@@ -115,7 +115,7 @@ export default function Experience({
                         Add
                     </button>
                     <button
-                        className='remove-experience-segment'
+                        className='remove-experience-segment remove-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
                             removeExperienceItem(experience, stateUpdater);

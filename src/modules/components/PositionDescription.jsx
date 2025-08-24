@@ -74,8 +74,8 @@ export default function PositionDescription({
     const helpId = `${itemId}-description-help`;
 
     return (
-        <div className='position-description'>
-            <h4 className='position-description-header'>
+        <div className='position-description description-cont'>
+            <h4 className='position-description-header description-header'>
                 <span>Position Description</span>
                 <InfoTooltipButton
                     className='position-description-help'
@@ -85,7 +85,7 @@ export default function PositionDescription({
                 />
                 <PositionDescriptionTooltip id={helpId} />
             </h4>
-            <div className='position-description-bullets'>
+            <div className='position-description-bullets description-bullets'>
                 <PositionDescriptionBullets
                     itemId={itemId}
                     state={state}
@@ -94,9 +94,9 @@ export default function PositionDescription({
                     updateExperience={updateExperience}
                 />
             </div>
-            <div className='position-description-control'>
+            <div className='position-description-control description-control-cont'>
                 <button
-                    className='position-add-bullet'
+                    className='position-add-bullet add-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
                         addDescriptionBullets(itemId, state, stateUpdater);
@@ -105,7 +105,7 @@ export default function PositionDescription({
                     Add Bullet
                 </button>
                 <button
-                    className='position-remove-bullet'
+                    className='position-remove-bullet remove-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
                         removeDescriptionBullets(itemId, state, stateUpdater);

@@ -1,7 +1,7 @@
-import { initializeProjectItem } from '../utilities/form-utilities';
+import { initializeEducationItem } from '../utilities/form-utilities';
 import { extractDescIdNumber } from '../utilities/misc-utilities';
 
-export function updateProjects(event, itemId, property, state, stateUpdater) {
+export function updateEducation(event, itemId, property, state, stateUpdater) {
     let newVal = event.target.value;
 
     if (property === 'description') {
@@ -19,39 +19,39 @@ export function updateProjects(event, itemId, property, state, stateUpdater) {
         }
     }
 
-    const newPro = {
+    const newEdu = {
         ...state,
         [itemId]: { ...state[itemId], [property]: newVal },
     };
-    stateUpdater(newPro);
+    stateUpdater(newEdu);
 }
 
-export function addProjectItem(state, stateUpdater) {
+export function addEducationItem(state, stateUpdater) {
     const idList = Object.keys(state);
     const latestId = idList[idList.length - 1];
     const newId = Number(latestId.slice(3)) + 1;
-    const newPro = {
+    const newEdu = {
         ...state,
-        [`pro${newId}`]: initializeProjectItem(),
+        [`edu${newId}`]: initializeEducationItem(),
     };
 
-    stateUpdater(newPro);
+    stateUpdater(newEdu);
 }
 
-export function removeProjectItem(state, stateUpdater) {
+export function removeEducationItem(state, stateUpdater) {
     const idList = Object.keys(state);
     if (idList.length === 1) {
         return;
     }
 
     const latestId = idList[idList.length - 1];
-    const newPro = { ...state };
-    delete newPro[latestId];
+    const newEdu = { ...state };
+    delete newEdu[latestId];
 
-    stateUpdater(newPro);
+    stateUpdater(newEdu);
 }
 
-export function addProDescriptionBullets(itemId, state, stateUpdater) {
+export function addEduDescriptionBullets(itemId, state, stateUpdater) {
     const idList = Object.keys(state[itemId].description);
     let newDescId;
     if (idList.length === 0) {
@@ -60,7 +60,7 @@ export function addProDescriptionBullets(itemId, state, stateUpdater) {
         const latestId = idList[idList.length - 1];
         newDescId = `${itemId}-desc${extractDescIdNumber(latestId) + 1}`;
     }
-    const newPro = {
+    const newEdu = {
         ...state,
         [itemId]: {
             ...state[itemId],
@@ -70,10 +70,10 @@ export function addProDescriptionBullets(itemId, state, stateUpdater) {
             },
         },
     };
-    stateUpdater(newPro);
+    stateUpdater(newEdu);
 }
 
-export function removeProDescriptionBullets(itemId, state, stateUpdater) {
+export function removeEduDescriptionBullets(itemId, state, stateUpdater) {
     const idList = Object.keys(state[itemId].description);
     // Unlike experience items, allow a position to have no description
     if (idList.length === 0) {
@@ -81,8 +81,8 @@ export function removeProDescriptionBullets(itemId, state, stateUpdater) {
     }
 
     const latestId = idList[idList.length - 1];
-    const newPro = { ...state };
-    delete newPro[itemId].description[latestId];
+    const newEdu = { ...state };
+    delete newEdu[itemId].description[latestId];
 
-    stateUpdater(newPro);
+    stateUpdater(newEdu);
 }

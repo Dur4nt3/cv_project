@@ -2,6 +2,7 @@ import {
     PersonalInfo,
     ExperienceItem,
     ProjectItem,
+    EducationItem,
 } from '../utilities/form-data';
 
 import plusLightSvg from '../../assets/media/icons/plus-light-mode.svg';
@@ -19,6 +20,10 @@ export function initializeExperienceItem() {
 
 export function initializeProjectItem() {
     return new ProjectItem('', '', {});
+}
+
+export function initializeEducationItem() {
+    return new EducationItem('', '', {});
 }
 
 export function getCollapseImgSrc(theme, collapsed) {
@@ -89,6 +94,33 @@ export function initializeToggledSections() {
         projects: false,
         education: true,
         skills: true,
-        summary: false
+        summary: false,
+    };
+}
+
+export function clearAll(stateUpdaters, states, updateClearNoticeStatus) {
+    stateUpdaters.info(initializePersonalInfo());
+
+    const newExp = { ...states.experience };
+    for (const key of Object.keys(newExp)) {
+        newExp[key] = initializeExperienceItem();
     }
+
+    stateUpdaters.experience(newExp);
+
+    const newPro = { ...states.projects };
+    for (const key of Object.keys(newPro)) {
+        newPro[key] = initializeProjectItem();
+    }
+
+    stateUpdaters.projects(newPro);
+
+    const newEdu = { ...states.education };
+    for (const key of Object.keys(newEdu)) {
+        newEdu[key] = initializeEducationItem();
+    }
+
+    stateUpdaters.education(newEdu);
+
+    updateClearNoticeStatus(false);
 }

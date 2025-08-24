@@ -5,7 +5,10 @@ import {
     initializeExperienceItem,
     initializeToggledSections,
     initializeProjectItem,
+    initializeEducationItem,
+    clearAll,
 } from '../utilities/form-utilities';
+
 import { updateInfo } from '../stateUtils/info-utils';
 import {
     updateExperience,
@@ -21,12 +24,19 @@ import {
     addProDescriptionBullets,
     removeProDescriptionBullets,
 } from '../stateUtils/projects-utils';
+import {
+    updateEducation,
+    addEducationItem,
+    removeEducationItem,
+    addEduDescriptionBullets,
+    removeEduDescriptionBullets,
+} from '../stateUtils/education-utils';
 
 import FormHeader from './FormHeader';
 import Info from './Info';
 import Experience from './Experience';
 import Projects from './Projects';
-import Eduction from './Eduction';
+import Education from './Eduction';
 import Skills from './Skills';
 import Summary from './Summary';
 import FormActions from './FormActions';
@@ -45,6 +55,9 @@ export default function Form({ theme }) {
     const [projects, setProjects] = useState({
         pro1: initializeProjectItem(),
     });
+    const [education, setEducation] = useState({
+        edu1: initializeEducationItem(),
+    });
 
     const [clearNoticeShown, updateClearNoticeStatus] = useState(false);
     const [toggledSections, toggleSection] = useState(
@@ -61,19 +74,6 @@ export default function Form({ theme }) {
         console.log('placeholder function for preview');
     }
 
-    function clearAll() {
-        setInfo(initializePersonalInfo());
-
-        const newExp = { ...experience };
-        for (const key of Object.keys(newExp)) {
-            newExp[key] = initializeExperienceItem();
-        }
-
-        setExperience(newExp);
-
-        updateClearNoticeStatus(false);
-    }
-
     function handleSectionToggle(section) {
         const newToggles = { ...toggledSections };
         newToggles[section] = !newToggles[section];
@@ -85,7 +85,23 @@ export default function Form({ theme }) {
             {clearNoticeShown && (
                 <ClearNotice
                     updateClearNoticeStatus={updateClearNoticeStatus}
-                    clearAll={clearAll}
+                    clearAll={() => {
+                        clearAll(
+                            {
+                                info: setInfo,
+                                experience: setExperience,
+                                projects: setProjects,
+                                education: setEducation,
+                            },
+                            {
+                                info,
+                                experience,
+                                projects,
+                                education,
+                            },
+                            updateClearNoticeStatus
+                        );
+                    }}
                 />
             )}
             <FormHeader
@@ -122,7 +138,18 @@ export default function Form({ theme }) {
                 addDescriptionBullets={addProDescriptionBullets}
                 removeDescriptionBullets={removeProDescriptionBullets}
             />
-            <Eduction />
+            <Education
+                theme={theme}
+                toggled={toggledSections.education}
+                handleSectionToggle={handleSectionToggle}
+                education={education}
+                stateUpdater={setEducation}
+                updateEducation={updateEducation}
+                addEducationItem={addEducationItem}
+                removeEducationItem={removeEducationItem}
+                addDescriptionBullets={addEduDescriptionBullets}
+                removeDescriptionBullets={removeEduDescriptionBullets}
+            />
             <Skills />
             <Summary />
             <FormActions
