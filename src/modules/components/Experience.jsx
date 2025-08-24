@@ -12,7 +12,7 @@ function ExperienceTooltip({ id }) {
         <Tooltip id={id} className='custom-tooltip'>
             <div>
                 <p>
-                    The experience section is used to describe your
+                    The "Experience" section is used to describe your
                     responsibilities in past roles.
                 </p>
                 <p>
