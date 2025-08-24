@@ -37,6 +37,7 @@ export default function Projects({
     toggled,
     handleSectionToggle,
     projects,
+    stateUpdater,
     updateProjects,
     addProjectItem,
     removeProjectItem,
@@ -77,6 +78,48 @@ export default function Projects({
                     toggled={toggled}
                 />
             </h2>
+            <div
+                className={
+                    toggled === false
+                        ? 'form-inputs section-toggled-off'
+                        : 'form-inputs'
+                }
+            >
+                {Object.keys(projects).map((itemId) => (
+                    <ProjectSegment
+                        key={itemId}
+                        theme={theme}
+                        itemId={itemId}
+                        projects={projects}
+                        stateUpdater={stateUpdater}
+                        updateProjects={updateProjects}
+                        addDescriptionBullets={addDescriptionBullets}
+                        removeDescriptionBullets={removeDescriptionBullets}
+                    />
+                ))}
+
+                <div className='projects-control-buttons'>
+                    <button
+                        className='add-projects-segment'
+                        onClick={(event) => {
+                            event.preventDefault();
+                            addProjectItem(projects, stateUpdater);
+                        }}
+                    >
+                        Add
+                    </button>
+                    <button
+                        className='remove-projects-segment'
+                        onClick={(event) => {
+                            event.preventDefault();
+                            removeProjectItem(projects, stateUpdater);
+                        }}
+                        disabled={Object.keys(projects).length === 1 && true}
+                    >
+                        Remove
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

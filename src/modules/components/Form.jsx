@@ -9,12 +9,18 @@ import {
 import { updateInfo } from '../stateUtils/info-utils';
 import {
     updateExperience,
-    addDescriptionBullets,
-    removeDescriptionBullets,
+    addExpDescriptionBullets,
+    removeExpDescriptionBullets,
     addExperienceItem,
     removeExperienceItem,
 } from '../stateUtils/experience-utils';
-import { addProjectItem, updateProjects } from '../stateUtils/projects-utils';
+import {
+    addProjectItem,
+    updateProjects,
+    removeProjectItem,
+    addProDescriptionBullets,
+    removeProDescriptionBullets,
+} from '../stateUtils/projects-utils';
 
 import FormHeader from './FormHeader';
 import Info from './Info';
@@ -101,8 +107,8 @@ export default function Form({ theme }) {
                 updateExperience={updateExperience}
                 addExperienceItem={addExperienceItem}
                 removeExperienceItem={removeExperienceItem}
-                addDescriptionBullets={addDescriptionBullets}
-                removeDescriptionBullets={removeDescriptionBullets}
+                addDescriptionBullets={addExpDescriptionBullets}
+                removeDescriptionBullets={removeExpDescriptionBullets}
             />
             <Projects
                 theme={theme}
@@ -112,6 +118,9 @@ export default function Form({ theme }) {
                 stateUpdater={setProjects}
                 updateProjects={updateProjects}
                 addProjectItem={addProjectItem}
+                removeProjectItem={removeProjectItem}
+                addDescriptionBullets={addProDescriptionBullets}
+                removeDescriptionBullets={removeProDescriptionBullets}
             />
             <Eduction />
             <Skills />

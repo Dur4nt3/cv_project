@@ -45,7 +45,9 @@ form {
 .form-buttons-cont > *,
 .experience-control-buttons > *,
 .position-description-control > *,
-.clear-all-actions > * {
+.project-description-control > *,
+.clear-all-actions > *,
+.projects-control-buttons > * {
     cursor: pointer;
     color: var(--text-alt);
     border-radius: 0.35rem;
@@ -60,21 +62,29 @@ form {
 .clear-all-actions > *:hover,
 .remove-experience-segment:not(:disabled):hover,
 .position-add-bullet:hover,
-.position-remove-bullet:not(:disabled):hover {
+.project-add-bullet:hover,
+.position-remove-bullet:not(:disabled):hover,
+.project-remove-bullet:not(:disabled):hover,
+.add-projects-segment:hover,
+.remove-projects-segment:not(:disabled):hover {
     transform: translateY(-0.15rem);
 }
 
 .form-buttons-cont > *:active,
 .clear-all-actions > *:active,
 .experience-control-buttons > *:active,
-.position-description-control > *:active {
+.position-description-control > *:active,
+.project-description-control > *:active
+.projects-control-buttons > *:active {
     filter: brightness(1.15);
 }
 
 .submit-form,
 .add-experience-segment,
 .position-add-bullet,
-.cancel-clear-button {
+.project-add-bullet,
+.cancel-clear-button,
+.add-projects-segment {
     color: var(--text-main);
     background-color: var(--confirm-green);
 }
@@ -82,7 +92,9 @@ form {
 body.dark-mode .submit-form,
 body.dark-mode .add-experience-segment,
 body.dark-mode .position-add-bullet,
-body.dark-mode .cancel-clear-button {
+body.dark-mode .project-add-bullet,
+body.dark-mode .cancel-clear-button,
+body.dark-mode .add-projects-segment {
     color: var(--text-alt);
 }
 
@@ -96,7 +108,8 @@ body.dark-mode .cancel-clear-button {
 }
 
 .form-inputs > *:not(:last-child),
-.experience-segment > *:not(:last-child) {
+.experience-segment > *:not(:last-child),
+.projects-segment > *:not(:last-child) {
     margin-bottom: 1rem;
 }
 
@@ -241,7 +254,8 @@ body.dark-mode .form-input::placeholder {
     font-size: var(--fs-base);
 }
 
-.experience-control-buttons {
+.experience-control-buttons,
+.projects-control-buttons {
     margin-top: 1rem;
     display: grid;
     grid-auto-flow: column;
@@ -251,35 +265,46 @@ body.dark-mode .form-input::placeholder {
 
 .remove-experience-segment,
 .position-remove-bullet,
-.clear-data-button {
+.project-remove-bullet,
+.clear-data-button,
+.remove-projects-segment {
     background-color: var(--accent-color);
 }
 
 .remove-experience-segment:disabled,
-.position-remove-bullet:disabled {
+.position-remove-bullet:disabled,
+.project-remove-bullet:disabled,
+.remove-projects-segment:disabled {
     opacity: 0.7;
     filter: brightness(0.85);
     cursor: not-allowed;
 }
 
 body.dark-mode .remove-experience-segment:disabled,
-body.dark-mode .position-remove-bullet:disabled {
+body.dark-mode .position-remove-bullet:disabled,
+body.dark-mode .project-remove-bullet:disabled,
+body.dark-mode .remove-projects-segment:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
 body.dark-mode .remove-experience-segment,
 body.dark-mode .position-remove-bullet,
-body.dark-mode .clear-data-button {
+body.dark-mode .project-remove-bullet,
+body.dark-mode .clear-data-button,
+body.dark-mode .remove-projects-segment {
     color: var(--text-main);
 }
 
-.position-description-header {
+.position-description-header,
+.project-description-header {
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
 }
 
-.position-description-control {
+.position-description-control,
+.project-description-control {
     margin: 1rem 1.5rem 0 1.5rem;
     display: grid;
     grid-auto-flow: column;
@@ -287,7 +312,8 @@ body.dark-mode .clear-data-button {
     gap: 0.25rem;
 }
 
-.position-description-control > * {
+.position-description-control > *,
+.project-description-control > * {
     font-size: var(--fs-sm);
 }
 
@@ -381,4 +407,9 @@ body.dark-mode .clear-data-button {
 
 .section-toggled-off {
     display: none;
+}
+
+.position-description-bullets > *:not(:last-child),
+.project-description-bullets > *:not(:last-child) {
+    margin-bottom: 1rem;
 }

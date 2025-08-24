@@ -26,7 +26,7 @@ export function updateExperience(event, itemId, property, state, stateUpdater) {
     stateUpdater(newExp);
 }
 
-export function addDescriptionBullets(itemId, state, stateUpdater) {
+export function addExpDescriptionBullets(itemId, state, stateUpdater) {
     const idList = Object.keys(state[itemId].positionDescription);
     let newDescId;
     if (idList.length === 0) {
@@ -48,7 +48,7 @@ export function addDescriptionBullets(itemId, state, stateUpdater) {
     stateUpdater(newExp);
 }
 
-export function removeDescriptionBullets(itemId, state, stateUpdater) {
+export function removeExpDescriptionBullets(itemId, state, stateUpdater) {
     const idList = Object.keys(state[itemId].positionDescription);
     // Unlike experience items, allow a position to have no description
     if (idList.length === 0) {

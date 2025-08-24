@@ -1,13 +1,13 @@
 import InfoTooltipButton from './InfoTooltipsButton';
 import { Tooltip } from 'react-tooltip';
 
-function PositionDescriptionTooltip({ id }) {
+function ProjectDescriptionTooltip({ id }) {
     return (
         <Tooltip id={id} className='custom-tooltip'>
             <div>
-                <p>Details the responsibilities of your role below.</p>
+                <p>Explain your project below.</p>
                 <p>
-                    Ensure to encompass the entire scope of your role whilst
+                    Ensure to encompass the entire scope of your project whilst
                     keeping it concise.
                 </p>
                 <p>
@@ -19,7 +19,7 @@ function PositionDescriptionTooltip({ id }) {
                     remove the latest bullet.
                 </p>
                 <p>
-                    <b>NOTE:</b> Although the inputs below support it, refrain
+                    <b>NOTE:</b> Although the input below supports it, refrain
                     from using line breaks.
                 </p>
             </div>
@@ -27,33 +27,33 @@ function PositionDescriptionTooltip({ id }) {
     );
 }
 
-function PositionDescriptionBullets({
+function ProjectDescriptionBullets({
     itemId,
     state,
     stateUpdater,
-    positionDescription,
-    updateExperience,
+    description,
+    updateProjects,
 }) {
     return (
         <>
-            {Object.keys(positionDescription).map((description, index) => (
-                <div className='form-row' key={description}>
-                    <label htmlFor={description} className='form-label'>
+            {Object.keys(description).map((descriptionItem, index) => (
+                <div className='form-row' key={descriptionItem}>
+                    <label htmlFor={descriptionItem} className='form-label'>
                         List Bullet {index + 1}
                     </label>
                     <textarea
-                        id={description}
-                        value={positionDescription[description]}
+                        id={descriptionItem}
+                        value={description[descriptionItem]}
                         onChange={(event) =>
-                            updateExperience(
+                            updateProjects(
                                 event,
                                 itemId,
-                                'positionDescription',
+                                'description',
                                 state,
                                 stateUpdater
                             )
                         }
-                        placeholder='Detail a portion of your responsibilities within the specified position'
+                        placeholder='Detail a portion of the scope of your project'
                     ></textarea>
                 </div>
             ))}
@@ -61,42 +61,42 @@ function PositionDescriptionBullets({
     );
 }
 
-export default function PositionDescription({
-    positionDescription,
+export default function ProjectDescription({
+    description,
     itemId,
     theme,
     state,
     stateUpdater,
     addDescriptionBullets,
     removeDescriptionBullets,
-    updateExperience,
+    updateProjects,
 }) {
     const helpId = `${itemId}-description-help`;
 
     return (
-        <div className='position-description'>
-            <h4 className='position-description-header'>
-                <span>Position Description</span>
+        <div className='project-description'>
+            <h4 className='project-description-header'>
+                <span>Project Description</span>
                 <InfoTooltipButton
-                    className='position-description-help'
+                    className='project-description-help'
                     id={helpId}
-                    label='how to fill position description'
+                    label='how to fill project description'
                     theme={theme}
                 />
-                <PositionDescriptionTooltip id={helpId} />
+                <ProjectDescriptionTooltip id={helpId} />
             </h4>
-            <div className='position-description-bullets'>
-                <PositionDescriptionBullets
+            <div className='project-description-bullets'>
+                <ProjectDescriptionBullets
                     itemId={itemId}
                     state={state}
                     stateUpdater={stateUpdater}
-                    positionDescription={positionDescription}
-                    updateExperience={updateExperience}
+                    description={description}
+                    updateProjects={updateProjects}
                 />
             </div>
-            <div className='position-description-control'>
+            <div className='project-description-control'>
                 <button
-                    className='position-add-bullet'
+                    className='project-add-bullet'
                     onClick={(event) => {
                         event.preventDefault();
                         addDescriptionBullets(itemId, state, stateUpdater);
@@ -105,12 +105,12 @@ export default function PositionDescription({
                     Add Bullet
                 </button>
                 <button
-                    className='position-remove-bullet'
+                    className='project-remove-bullet'
                     onClick={(event) => {
                         event.preventDefault();
                         removeDescriptionBullets(itemId, state, stateUpdater);
                     }}
-                    disabled={Object.keys(positionDescription).length === 0}
+                    disabled={Object.keys(description).length === 0}
                 >
                     Remove Bullet
                 </button>
