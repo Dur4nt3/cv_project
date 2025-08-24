@@ -43,6 +43,7 @@ export default function Experience({
     toggled,
     handleSectionToggle,
     experience,
+    stateUpdater,
     updateExperience,
     addExperienceItem,
     removeExperienceItem,
@@ -95,7 +96,8 @@ export default function Experience({
                         key={itemId}
                         theme={theme}
                         itemId={itemId}
-                        experienceItem={experience[itemId]}
+                        experience={experience}
+                        stateUpdater={stateUpdater}
                         updateExperience={updateExperience}
                         addDescriptionBullets={addDescriptionBullets}
                         removeDescriptionBullets={removeDescriptionBullets}
@@ -107,7 +109,7 @@ export default function Experience({
                         className='add-experience-segment'
                         onClick={(event) => {
                             event.preventDefault();
-                            addExperienceItem();
+                            addExperienceItem(experience, stateUpdater);
                         }}
                     >
                         Add
@@ -116,7 +118,7 @@ export default function Experience({
                         className='remove-experience-segment'
                         onClick={(event) => {
                             event.preventDefault();
-                            removeExperienceItem();
+                            removeExperienceItem(experience, stateUpdater);
                         }}
                         disabled={Object.keys(experience).length === 1 && true}
                     >

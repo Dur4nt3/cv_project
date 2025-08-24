@@ -3,11 +3,14 @@ import PositionDescription from './PositionDescription';
 export default function ExperienceSegment({
     theme,
     itemId,
-    experienceItem,
+    experience,
+    stateUpdater,
     updateExperience,
     addDescriptionBullets,
     removeDescriptionBullets,
 }) {
+    const experienceItem = experience[itemId];
+
     return (
         <div className='experience-segment' id={itemId}>
             <h3 className='experience-segment-heading'>
@@ -21,6 +24,8 @@ export default function ExperienceSegment({
                             positionDescription={experienceItem[key]}
                             itemId={itemId}
                             theme={theme}
+                            state={experience}
+                            stateUpdater={stateUpdater}
                             addDescriptionBullets={addDescriptionBullets}
                             removeDescriptionBullets={removeDescriptionBullets}
                             updateExperience={updateExperience}
@@ -61,7 +66,13 @@ export default function ExperienceSegment({
                             required={true}
                             value={experienceItem[key]}
                             onChange={(event) =>
-                                updateExperience(event, itemId, key)
+                                updateExperience(
+                                    event,
+                                    itemId,
+                                    key,
+                                    experience,
+                                    stateUpdater
+                                )
                             }
                             placeholder={placeholders[key]}
                         />

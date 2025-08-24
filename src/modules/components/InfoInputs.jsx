@@ -1,4 +1,4 @@
-export default function InfoInputs({infoObj, changeCallback}) {
+export default function InfoInputs({ infoObj, changeCallback, stateUpdater }) {
     const inputList = Object.keys(infoObj).map((key) => {
         let inputType;
         let label;
@@ -51,7 +51,9 @@ export default function InfoInputs({infoObj, changeCallback}) {
                     type={inputType}
                     required={required}
                     value={infoObj[key]}
-                    onChange={(event) => changeCallback(event, key)}
+                    onChange={(event) =>
+                        changeCallback(event, key, infoObj, stateUpdater)
+                    }
                     placeholder={placeholders[key]}
                 />
             </div>

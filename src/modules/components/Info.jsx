@@ -5,7 +5,7 @@ import { getCollapseImgSrc, updateCollapse } from '../utilities/form-utilities';
 import InfoInputs from './InfoInputs';
 import CollapseButton from './CollapseButton';
 
-export default function Info({ theme, info, updateInfo }) {
+export default function Info({ theme, info, updateInfo, stateUpdater }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
 
@@ -27,7 +27,11 @@ export default function Info({ theme, info, updateInfo }) {
                 />
             </h2>
             <div className='form-inputs'>
-                <InfoInputs infoObj={info} changeCallback={updateInfo} />
+                <InfoInputs
+                    infoObj={info}
+                    changeCallback={updateInfo}
+                    stateUpdater={stateUpdater}
+                />
             </div>
         </div>
     );

@@ -45,38 +45,6 @@ export default function Form({ theme }) {
         initializeToggledSections()
     );
 
-    function updateInfoRedirect(event, property) {
-        updateInfo(event, property, info, setInfo);
-    }
-
-    function updateExperienceRedirect(event, itemId, property) {
-        updateExperience(event, itemId, property, experience, setExperience);
-    }
-
-    function addExperienceItemRedirect() {
-        addExperienceItem(experience, setExperience);
-    }
-
-    function removeExperienceItemRedirect() {
-        removeExperienceItem(experience, setExperience);
-    }
-
-    function addDescriptionBulletsRedirect(itemId) {
-        addDescriptionBullets(itemId, experience, setExperience);
-    }
-
-    function removeDescriptionBulletsRedirect(itemId) {
-        removeDescriptionBullets(itemId, experience, setExperience);
-    }
-
-    function updateProjectsRedirect(event, itemId, property) {
-        updateProjects(event, itemId, property, projects, setProjects);
-    }
-
-    function addProjectItemRedirect() {
-        addProjectItem(projects, setProjects);
-    }
-
     function handleSubmission(event) {
         event.preventDefault();
         console.log('placeholder function for submission');
@@ -118,25 +86,32 @@ export default function Form({ theme }) {
                 updateClearNotice={updateClearNoticeStatus}
                 imgSrc={clearDark}
             />
-            <Info theme={theme} info={info} updateInfo={updateInfoRedirect} />
+            <Info
+                theme={theme}
+                info={info}
+                updateInfo={updateInfo}
+                stateUpdater={setInfo}
+            />
             <Experience
                 theme={theme}
                 toggled={toggledSections.experience}
                 handleSectionToggle={handleSectionToggle}
                 experience={experience}
-                updateExperience={updateExperienceRedirect}
-                addExperienceItem={addExperienceItemRedirect}
-                removeExperienceItem={removeExperienceItemRedirect}
-                addDescriptionBullets={addDescriptionBulletsRedirect}
-                removeDescriptionBullets={removeDescriptionBulletsRedirect}
+                stateUpdater={setExperience}
+                updateExperience={updateExperience}
+                addExperienceItem={addExperienceItem}
+                removeExperienceItem={removeExperienceItem}
+                addDescriptionBullets={addDescriptionBullets}
+                removeDescriptionBullets={removeDescriptionBullets}
             />
             <Projects
                 theme={theme}
                 toggled={toggledSections.projects}
                 handleSectionToggle={handleSectionToggle}
                 projects={projects}
-                updateProjects={updateProjectsRedirect}
-                addProjectItem={addProjectItemRedirect}
+                stateUpdater={setProjects}
+                updateProjects={updateProjects}
+                addProjectItem={addProjectItem}
             />
             <Eduction />
             <Skills />

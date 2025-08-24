@@ -1,7 +1,7 @@
 import InfoTooltipButton from './InfoTooltipsButton';
 import { Tooltip } from 'react-tooltip';
 
-function PositionDescriptionTooltip({id}) {
+function PositionDescriptionTooltip({ id }) {
     return (
         <Tooltip id={id} className='custom-tooltip'>
             <div>
@@ -27,9 +27,10 @@ function PositionDescriptionTooltip({id}) {
     );
 }
 
-
 function PositionDescriptionBullets({
     itemId,
+    state,
+    stateUpdater,
     positionDescription,
     updateExperience,
 }) {
@@ -47,7 +48,9 @@ function PositionDescriptionBullets({
                             updateExperience(
                                 event,
                                 itemId,
-                                'positionDescription'
+                                'positionDescription',
+                                state,
+                                stateUpdater
                             )
                         }
                         placeholder='Detail a portion of your responsibilities within the specified position'
@@ -62,6 +65,8 @@ export default function PositionDescription({
     positionDescription,
     itemId,
     theme,
+    state,
+    stateUpdater,
     addDescriptionBullets,
     removeDescriptionBullets,
     updateExperience,
@@ -78,11 +83,13 @@ export default function PositionDescription({
                     label='how to fill position description'
                     theme={theme}
                 />
-                <PositionDescriptionTooltip id={helpId}/>
+                <PositionDescriptionTooltip id={helpId} />
             </h4>
             <div className='position-description-bullets'>
                 <PositionDescriptionBullets
                     itemId={itemId}
+                    state={state}
+                    stateUpdater={stateUpdater}
                     positionDescription={positionDescription}
                     updateExperience={updateExperience}
                 />
@@ -92,7 +99,7 @@ export default function PositionDescription({
                     className='position-add-bullet'
                     onClick={(event) => {
                         event.preventDefault();
-                        addDescriptionBullets(itemId);
+                        addDescriptionBullets(itemId, state, stateUpdater);
                     }}
                 >
                     Add Bullet
@@ -101,7 +108,7 @@ export default function PositionDescription({
                     className='position-remove-bullet'
                     onClick={(event) => {
                         event.preventDefault();
-                        removeDescriptionBullets(itemId);
+                        removeDescriptionBullets(itemId, state, stateUpdater);
                     }}
                     disabled={Object.keys(positionDescription).length === 0}
                 >
