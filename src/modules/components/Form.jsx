@@ -68,15 +68,12 @@ export default function Form({ theme }) {
         skill1: initializeSkillsItem(),
     });
 
+    const [summary, setSummary] = useState('');
+
     const [clearNoticeShown, updateClearNoticeStatus] = useState(false);
     const [toggledSections, toggleSection] = useState(
         initializeToggledSections()
     );
-
-    function handleSubmission(event) {
-        event.preventDefault();
-        console.log('placeholder function for submission');
-    }
 
     function handlePreview(event) {
         event.preventDefault();
@@ -101,12 +98,15 @@ export default function Form({ theme }) {
                                 experience: setExperience,
                                 projects: setProjects,
                                 education: setEducation,
+                                skills: setSkills,
+                                summary: setSummary,
                             },
                             {
                                 info,
                                 experience,
                                 projects,
                                 education,
+                                skills,
                             },
                             updateClearNoticeStatus
                         );
@@ -169,11 +169,14 @@ export default function Form({ theme }) {
                 addSkillsItem={addSkillsItem}
                 removeSkillsItem={removeSkillsItem}
             />
-            <Summary />
-            <FormActions
-                handleSubmission={handleSubmission}
-                handlePreview={handlePreview}
+            <Summary
+                theme={theme}
+                toggled={toggledSections.summary}
+                handleSectionToggle={handleSectionToggle}
+                summary={summary}
+                setSummary={setSummary}
             />
+            <FormActions handlePreview={handlePreview} />
         </form>
     );
 }

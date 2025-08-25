@@ -134,5 +134,7 @@ export function clearAll(stateUpdaters, states, updateClearNoticeStatus) {
 
     stateUpdaters.skills(newSkills);
 
+    stateUpdaters.summary('');
+
     updateClearNoticeStatus(false);
 }
