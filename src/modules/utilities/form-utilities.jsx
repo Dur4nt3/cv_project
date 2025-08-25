@@ -3,6 +3,7 @@ import {
     ExperienceItem,
     ProjectItem,
     EducationItem,
+    SkillItem,
 } from '../utilities/form-data';
 
 import plusLightSvg from '../../assets/media/icons/plus-light-mode.svg';
@@ -24,6 +25,10 @@ export function initializeProjectItem() {
 
 export function initializeEducationItem() {
     return new EducationItem('', '', {});
+}
+
+export function initializeSkillsItem() {
+    return new SkillItem('', '');
 }
 
 export function getCollapseImgSrc(theme, collapsed) {
@@ -121,6 +126,13 @@ export function clearAll(stateUpdaters, states, updateClearNoticeStatus) {
     }
 
     stateUpdaters.education(newEdu);
+
+    const newSkills = { ...states.skills };
+    for (const key of Object.keys(newSkills)) {
+        newSkills[key] = initializeSkillsItem();
+    }
+
+    stateUpdaters.skills(newSkills);
 
     updateClearNoticeStatus(false);
 }

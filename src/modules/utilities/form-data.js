@@ -52,6 +52,7 @@ export class EducationItem {
 
 export class SkillItem {
     constructor(type, description) {
-        this.type = description
+        this.type = type;
+        this.description = description;
     }
 }

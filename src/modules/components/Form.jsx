@@ -6,6 +6,7 @@ import {
     initializeToggledSections,
     initializeProjectItem,
     initializeEducationItem,
+    initializeSkillsItem,
     clearAll,
 } from '../utilities/form-utilities';
 
@@ -31,6 +32,11 @@ import {
     addEduDescriptionBullets,
     removeEduDescriptionBullets,
 } from '../stateUtils/education-utils';
+import {
+    updateSkills,
+    addSkillsItem,
+    removeSkillsItem,
+} from '../stateUtils/skills-utils';
 
 import FormHeader from './FormHeader';
 import Info from './Info';
@@ -57,6 +63,9 @@ export default function Form({ theme }) {
     });
     const [education, setEducation] = useState({
         edu1: initializeEducationItem(),
+    });
+    const [skills, setSkills] = useState({
+        skill1: initializeSkillsItem(),
     });
 
     const [clearNoticeShown, updateClearNoticeStatus] = useState(false);
@@ -150,7 +159,16 @@ export default function Form({ theme }) {
                 addDescriptionBullets={addEduDescriptionBullets}
                 removeDescriptionBullets={removeEduDescriptionBullets}
             />
-            <Skills />
+            <Skills
+                theme={theme}
+                toggled={toggledSections.skills}
+                handleSectionToggle={handleSectionToggle}
+                skills={skills}
+                stateUpdater={setSkills}
+                updateSkills={updateSkills}
+                addSkillsItem={addSkillsItem}
+                removeSkillsItem={removeSkillsItem}
+            />
             <Summary />
             <FormActions
                 handleSubmission={handleSubmission}
