@@ -1,14 +1,21 @@
+import SkillsErrorNotice from './SkillsErrorNotice';
+
 export default function SkillsSegment({
     itemId,
     skills,
     stateUpdater,
     updateSkills,
+    errors,
 }) {
     const skillsItem = skills[itemId];
 
     return (
         <div className='skills-segment' id={itemId}>
             <h3 className='skills-segment-heading'>Skill {itemId.slice(5)}</h3>
+            {errors !== null && errors !== undefined && (
+                <SkillsErrorNotice errors={errors} />
+            )}
+
             {Object.keys(skillsItem).map((key) => {
                 const labels = {
                     type: 'Skill Category',
@@ -42,20 +49,22 @@ export default function SkillsSegment({
                         />
                     );
                 } else {
-                    finalInput = <textarea
-                        required={true}
-                        value={skillsItem[key]}
-                        onChange={(event) =>
-                            updateSkills(
-                                event,
-                                itemId,
-                                key,
-                                skills,
-                                stateUpdater
-                            )
-                        }
-                        placeholder={placeholders[key]}
-                    ></textarea>;
+                    finalInput = (
+                        <textarea
+                            required={true}
+                            value={skillsItem[key]}
+                            onChange={(event) =>
+                                updateSkills(
+                                    event,
+                                    itemId,
+                                    key,
+                                    skills,
+                                    stateUpdater
+                                )
+                            }
+                            placeholder={placeholders[key]}
+                        ></textarea>
+                    );
                 }
 
                 return (

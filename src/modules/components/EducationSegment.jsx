@@ -1,4 +1,5 @@
 import EducationDescription from './EducationDescription';
+import EducationErrorNotice from './EducationErrorNotice';
 
 export default function EducationSegment({
     theme,
@@ -8,6 +9,7 @@ export default function EducationSegment({
     updateEducation,
     addDescriptionBullets,
     removeDescriptionBullets,
+    errors,
 }) {
     const educationItem = education[itemId];
 
@@ -16,6 +18,11 @@ export default function EducationSegment({
             <h3 className='education-segment-heading'>
                 Education {itemId.slice(3)}
             </h3>
+
+            {errors !== null && errors !== undefined && (
+                <EducationErrorNotice errors={errors} />
+            )}
+
             {Object.keys(educationItem).map((key) => {
                 if (key === 'description') {
                     return (

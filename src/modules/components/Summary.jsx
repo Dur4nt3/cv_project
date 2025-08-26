@@ -6,6 +6,8 @@ import InfoTooltipButton from './InfoTooltipsButton';
 import ToggleSection from './ToggleSection';
 import { Tooltip } from 'react-tooltip';
 
+import SummaryErrorNotice from './SummaryErrorNotice';
+
 function SummaryTooltip({ id }) {
     return (
         <Tooltip id={id} className='custom-tooltip'>
@@ -27,6 +29,7 @@ export default function Summary({
     handleSectionToggle,
     summary,
     setSummary,
+    errors,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -69,6 +72,10 @@ export default function Summary({
                         : 'form-inputs'
                 }
             >
+                {errors !== null && (
+                    <SummaryErrorNotice errors={errors} />
+                )}
+
                 <div className='form-row'>
                     <label className='form-label'>
                         Summary
@@ -77,11 +84,7 @@ export default function Summary({
                     <textarea
                         required={true}
                         value={summary}
-                        onChange={(event) =>
-                            setSummary(
-                                event.target.value
-                            )
-                        }
+                        onChange={(event) => setSummary(event.target.value)}
                         placeholder='Write a quick concise summary that includes your skills, expertise, experience, etc.'
                     ></textarea>
                 </div>

@@ -44,6 +44,7 @@ export default function Education({
     removeEducationItem,
     addDescriptionBullets,
     removeDescriptionBullets,
+    errors,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -96,6 +97,7 @@ export default function Education({
                         updateEducation={updateEducation}
                         addDescriptionBullets={addDescriptionBullets}
                         removeDescriptionBullets={removeDescriptionBullets}
+                        errors={errors !== null ? errors[itemId] : null}
                     />
                 ))}
 

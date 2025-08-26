@@ -1,4 +1,5 @@
 import PositionDescription from './PositionDescription';
+import ExperienceErrorNotice from './ExperienceErrorNotice';
 
 export default function ExperienceSegment({
     theme,
@@ -8,6 +9,7 @@ export default function ExperienceSegment({
     updateExperience,
     addDescriptionBullets,
     removeDescriptionBullets,
+    errors,
 }) {
     const experienceItem = experience[itemId];
 
@@ -16,6 +18,11 @@ export default function ExperienceSegment({
             <h3 className='experience-segment-heading'>
                 Position {itemId.slice(3)}
             </h3>
+
+            {(errors !== null && errors !== undefined) && (
+                <ExperienceErrorNotice errors={errors} />
+            )}
+
             {Object.keys(experienceItem).map((key) => {
                 if (key === 'positionDescription') {
                     return (
@@ -53,7 +60,9 @@ export default function ExperienceSegment({
                     <div className='form-row' key={key}>
                         <label className='form-label'>
                             {labels[key]}
-                            <span className='required-indicator'>*</span>
+                            {key !== 'positionEndDate' && (
+                                <span className='required-indicator'>*</span>
+                            )}
                         </label>
                         <input
                             className='form-input'
@@ -63,7 +72,7 @@ export default function ExperienceSegment({
                                     ? 'date'
                                     : 'text'
                             }
-                            required={true}
+                            required={key !== 'positionEndDate'}
                             value={experienceItem[key]}
                             onChange={(event) =>
                                 updateExperience(

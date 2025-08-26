@@ -1,4 +1,5 @@
 import ProjectDescription from './ProjectDescription';
+import ProjectsErrorNotice from './ProjectsErrorNotice';
 
 export default function ProjectSegment({
     theme,
@@ -8,6 +9,7 @@ export default function ProjectSegment({
     updateProjects,
     addDescriptionBullets,
     removeDescriptionBullets,
+    errors,
 }) {
     const projectsItem = projects[itemId];
 
@@ -16,6 +18,11 @@ export default function ProjectSegment({
             <h3 className='projects-segment-heading'>
                 Project {itemId.slice(3)}
             </h3>
+
+            {errors !== null && errors !== undefined && (
+                <ProjectsErrorNotice errors={errors} />
+            )}
+
             {Object.keys(projectsItem).map((key) => {
                 if (key === 'description') {
                     return (

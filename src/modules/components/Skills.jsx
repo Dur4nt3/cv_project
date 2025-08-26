@@ -40,6 +40,7 @@ export default function Skills({
     updateSkills,
     addSkillsItem,
     removeSkillsItem,
+    errors,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -89,6 +90,7 @@ export default function Skills({
                         skills={skills}
                         stateUpdater={stateUpdater}
                         updateSkills={updateSkills}
+                        errors={errors !== null ? errors[itemId] : null}
                     />
                 ))}
 

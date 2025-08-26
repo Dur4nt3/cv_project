@@ -1,4 +1,6 @@
 form {
+    font-size: var(--fs-sm);
+
     background: var(--background-color);
 
     padding: 0.5rem;
@@ -7,7 +9,7 @@ form {
     box-shadow: var(--background-shadow);
 
     width: 100%;
-    max-width: max-content;
+    max-width: 45ch;
 
     display: flex;
     flex-direction: column;
@@ -35,6 +37,7 @@ form {
 }
 
 .form-buttons-cont {
+    font-size: var(--fs-base);
     display: flex;
     justify-content: center;
 }
@@ -92,6 +95,11 @@ body.dark-mode .cancel-clear-button {
 }
 
 .form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-inputs {
     display: flex;
     flex-direction: column;
 }
@@ -246,11 +254,17 @@ body.dark-mode .form-input::placeholder {
 }
 
 .control-button-cont {
+    font-size: var(--fs-base);
+    align-self: center;
+    width: 100%;
     margin-top: 1rem;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+    display: flex;
+    justify-content: center;
     gap: 0.75rem;
+}
+
+.control-button-cont > button {
+    width: 50%;
 }
 
 .remove-segment-button,
@@ -284,16 +298,24 @@ body.dark-mode .clear-data-button {
     align-items: center;
 }
 
+.description-cont {
+    display: flex;
+    flex-direction: column;
+}
+
 .description-control-cont {
+    align-self: center;
+    width: 100%;
     margin: 1rem 1.5rem 0 1.5rem;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+    display: flex;
+    justify-content: center;
     gap: 0.5rem;
 }
 
 .description-control-cont > * {
+    width: 50%;
     font-size: var(--fs-sm);
+    padding: 0.25rem 1rem;
 }
 
 .modal {
@@ -410,4 +432,41 @@ body.dark-mode .clear-data-button {
 
 .description-bullets > *:not(:last-child) {
     margin-bottom: 1rem;
+}
+
+.section-errors, .all-form-errors {
+    max-width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.35rem;
+    background-color: var(--accent-color);
+    color: var(--text-alt);
+    margin-bottom: 1rem;
+}
+
+.all-form-errors {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+body.dark-mode .section-errors,
+body.dark-mode .all-form-errors {
+    color: var(--text-main);
+}
+
+.section-errors > h3 {
+    text-align: center;
+}
+
+.section-errors ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: var(--fs-sm);
+}
+
+.section-errors li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.inline-img.new-tab-icon {
+    vertical-align: text-top;
 }

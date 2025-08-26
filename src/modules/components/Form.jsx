@@ -38,6 +38,8 @@ import {
     removeSkillsItem,
 } from '../stateUtils/skills-utils';
 
+import validateForm from '../validation/validate-form';
+
 import FormHeader from './FormHeader';
 import Info from './Info';
 import Experience from './Experience';
@@ -47,6 +49,7 @@ import Skills from './Skills';
 import Summary from './Summary';
 import FormActions from './FormActions';
 import ClearNotice from './ClearNotice';
+import FormErrors from './FormErrors';
 
 import '../../assets/stylesheets/Form.css';
 
@@ -70,14 +73,46 @@ export default function Form({ theme }) {
 
     const [summary, setSummary] = useState('');
 
+    const [errors, setErrors] = useState({
+        infoErrors: null,
+        experienceErrors: null,
+        projectsErrors: null,
+        educationErrors: null,
+        skillsErrors: null,
+        summaryErrors: null,
+    });
+
     const [clearNoticeShown, updateClearNoticeStatus] = useState(false);
     const [toggledSections, toggleSection] = useState(
         initializeToggledSections()
     );
 
+    const stateObj = {
+        info,
+        experience,
+        projects,
+        education,
+        skills,
+        summary,
+    };
+
     function handlePreview(event) {
         event.preventDefault();
-        console.log('placeholder function for preview');
+        const formErrors = validateForm(stateObj, toggledSections);
+        if (formErrors === null) {
+            console.log('ready to preview');
+            setErrors({
+                infoErrors: null,
+                experienceErrors: null,
+                projectsErrors: null,
+                educationErrors: null,
+                skillsErrors: null,
+                summaryErrors: null,
+            });
+        } else {
+            console.log('errors found: ', formErrors);
+            setErrors(formErrors);
+        }
     }
 
     function handleSectionToggle(section) {
@@ -101,13 +136,7 @@ export default function Form({ theme }) {
                                 skills: setSkills,
                                 summary: setSummary,
                             },
-                            {
-                                info,
-                                experience,
-                                projects,
-                                education,
-                                skills,
-                            },
+                            stateObj,
                             updateClearNoticeStatus
                         );
                     }}
@@ -122,6 +151,7 @@ export default function Form({ theme }) {
                 info={info}
                 updateInfo={updateInfo}
                 stateUpdater={setInfo}
+                errors={errors.infoErrors}
             />
             <Experience
                 theme={theme}
@@ -134,6 +164,7 @@ export default function Form({ theme }) {
                 removeExperienceItem={removeExperienceItem}
                 addDescriptionBullets={addExpDescriptionBullets}
                 removeDescriptionBullets={removeExpDescriptionBullets}
+                errors={errors.experienceErrors}
             />
             <Projects
                 theme={theme}
@@ -146,6 +177,7 @@ export default function Form({ theme }) {
                 removeProjectItem={removeProjectItem}
                 addDescriptionBullets={addProDescriptionBullets}
                 removeDescriptionBullets={removeProDescriptionBullets}
+                errors={errors.projectsErrors}
             />
             <Education
                 theme={theme}
@@ -158,6 +190,7 @@ export default function Form({ theme }) {
                 removeEducationItem={removeEducationItem}
                 addDescriptionBullets={addEduDescriptionBullets}
                 removeDescriptionBullets={removeEduDescriptionBullets}
+                errors={errors.educationErrors}
             />
             <Skills
                 theme={theme}
@@ -168,6 +201,7 @@ export default function Form({ theme }) {
                 updateSkills={updateSkills}
                 addSkillsItem={addSkillsItem}
                 removeSkillsItem={removeSkillsItem}
+                errors={errors.skillsErrors}
             />
             <Summary
                 theme={theme}
@@ -175,8 +209,10 @@ export default function Form({ theme }) {
                 handleSectionToggle={handleSectionToggle}
                 summary={summary}
                 setSummary={setSummary}
+                errors={errors.summaryErrors}
             />
-            <FormActions handlePreview={handlePreview} />
+            <FormErrors errors={errors} />
+            <FormActions handlePreview={handlePreview} theme={theme} />
         </form>
     );
 }

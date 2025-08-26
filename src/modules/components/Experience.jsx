@@ -17,7 +17,12 @@ function ExperienceTooltip({ id }) {
                 </p>
                 <p>
                     Follow the steps below to add information about your past
-                    experience.
+                    experience
+                </p>
+                <p>
+                    Please note that specifying the end date for a particular
+                    position is not required; this allows including ongoing
+                    positions.
                 </p>
                 <p>
                     You may use the "Add" and "Remove" button to add more
@@ -49,6 +54,7 @@ export default function Experience({
     removeExperienceItem,
     addDescriptionBullets,
     removeDescriptionBullets,
+    errors,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -101,6 +107,7 @@ export default function Experience({
                         updateExperience={updateExperience}
                         addDescriptionBullets={addDescriptionBullets}
                         removeDescriptionBullets={removeDescriptionBullets}
+                        errors={ errors !== null ? errors[itemId] : null }
                     />
                 ))}
 

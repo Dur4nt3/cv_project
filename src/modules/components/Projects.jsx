@@ -27,6 +27,15 @@ function ProjectTooltip({ id }) {
                     If you don't have a lot of relevant experience, you should
                     opt-in to use this section.
                 </p>
+                <p>
+                    <b>
+                        NOTE: The link to be specified isn't strict, i.e., any
+                        non-blank string is allowed. It is up to your discretion
+                        to ensure it the link direct to the specified project.
+                        If you don't have a link to your project, specify the
+                        string "N/A" to indicate such.
+                    </b>
+                </p>
             </div>
         </Tooltip>
     );
@@ -43,6 +52,7 @@ export default function Projects({
     removeProjectItem,
     addDescriptionBullets,
     removeDescriptionBullets,
+    errors,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -95,6 +105,7 @@ export default function Projects({
                         updateProjects={updateProjects}
                         addDescriptionBullets={addDescriptionBullets}
                         removeDescriptionBullets={removeDescriptionBullets}
+                        errors={errors !== null ? errors[itemId] : null}
                     />
                 ))}
 
