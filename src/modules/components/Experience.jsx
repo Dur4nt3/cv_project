@@ -55,6 +55,7 @@ export default function Experience({
     addDescriptionBullets,
     removeDescriptionBullets,
     errors,
+    setPreviewStatus,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -107,7 +108,8 @@ export default function Experience({
                         updateExperience={updateExperience}
                         addDescriptionBullets={addDescriptionBullets}
                         removeDescriptionBullets={removeDescriptionBullets}
-                        errors={ errors !== null ? errors[itemId] : null }
+                        errors={errors !== null ? errors[itemId] : null}
+                        setPreviewStatus={setPreviewStatus}
                     />
                 ))}
 
@@ -116,7 +118,11 @@ export default function Experience({
                         className='add-experience-segment add-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            addExperienceItem(experience, stateUpdater);
+                            addExperienceItem(
+                                experience,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                     >
                         Add
@@ -125,7 +131,11 @@ export default function Experience({
                         className='remove-experience-segment remove-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            removeExperienceItem(experience, stateUpdater);
+                            removeExperienceItem(
+                                experience,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                         disabled={Object.keys(experience).length === 1 && true}
                     >

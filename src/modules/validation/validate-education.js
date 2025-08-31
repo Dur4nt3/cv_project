@@ -5,6 +5,9 @@ function validateEducationItem(educationItem) {
 
     educationItemErrors.institution = educationItem.institution === '';
     educationItemErrors.label = educationItem.label === '';
+    educationItemErrors.gradDate = Number.isNaN(
+        new Date(educationItem.gradDate).getTime()
+    );
 
     return educationItemErrors;
 }

@@ -20,6 +20,8 @@ In particular, this project aims to create an application that can dynamically c
 
 - JSX
 
+- React-pdf
+
 ## Misc Information
 
 This project is accessible and can be viewed on mobile devices.

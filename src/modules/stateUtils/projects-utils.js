@@ -1,7 +1,14 @@
 import { initializeProjectItem } from '../utilities/form-utilities';
 import { extractDescIdNumber } from '../utilities/misc-utilities';
 
-export function updateProjects(event, itemId, property, state, stateUpdater) {
+export function updateProjects(
+    event,
+    itemId,
+    property,
+    state,
+    stateUpdater,
+    setPreviewStatus
+) {
     let newVal = event.target.value;
 
     if (property === 'description') {
@@ -24,9 +31,10 @@ export function updateProjects(event, itemId, property, state, stateUpdater) {
         [itemId]: { ...state[itemId], [property]: newVal },
     };
     stateUpdater(newPro);
+    setPreviewStatus(false);
 }
 
-export function addProjectItem(state, stateUpdater) {
+export function addProjectItem(state, stateUpdater, setPreviewStatus) {
     const idList = Object.keys(state);
     const latestId = idList[idList.length - 1];
     const newId = Number(latestId.slice(3)) + 1;
@@ -36,9 +44,10 @@ export function addProjectItem(state, stateUpdater) {
     };
 
     stateUpdater(newPro);
+    setPreviewStatus(false);
 }
 
-export function removeProjectItem(state, stateUpdater) {
+export function removeProjectItem(state, stateUpdater, setPreviewStatus) {
     const idList = Object.keys(state);
     if (idList.length === 1) {
         return;
@@ -49,9 +58,15 @@ export function removeProjectItem(state, stateUpdater) {
     delete newPro[latestId];
 
     stateUpdater(newPro);
+    setPreviewStatus(false);
 }
 
-export function addProDescriptionBullets(itemId, state, stateUpdater) {
+export function addProDescriptionBullets(
+    itemId,
+    state,
+    stateUpdater,
+    setPreviewStatus
+) {
     const idList = Object.keys(state[itemId].description);
     let newDescId;
     if (idList.length === 0) {
@@ -71,9 +86,15 @@ export function addProDescriptionBullets(itemId, state, stateUpdater) {
         },
     };
     stateUpdater(newPro);
+    setPreviewStatus(false);
 }
 
-export function removeProDescriptionBullets(itemId, state, stateUpdater) {
+export function removeProDescriptionBullets(
+    itemId,
+    state,
+    stateUpdater,
+    setPreviewStatus
+) {
     const idList = Object.keys(state[itemId].description);
     // Unlike experience items, allow a position to have no description
     if (idList.length === 0) {
@@ -85,4 +106,5 @@ export function removeProDescriptionBullets(itemId, state, stateUpdater) {
     delete newPro[itemId].description[latestId];
 
     stateUpdater(newPro);
+    setPreviewStatus(false);
 }

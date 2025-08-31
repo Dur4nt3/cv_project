@@ -43,9 +43,10 @@ export class ProjectItem {
 }
 
 export class EducationItem {
-    constructor(institution, label, description) {
+    constructor(institution, label, gradDate, description) {
         this.institution = institution;
         this.label = label;
+        this.gradDate = gradDate;
         this.description = description;
     }
 }

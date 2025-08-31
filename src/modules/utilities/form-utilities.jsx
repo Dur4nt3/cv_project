@@ -24,7 +24,7 @@ export function initializeProjectItem() {
 }
 
 export function initializeEducationItem() {
-    return new EducationItem('', '', {});
+    return new EducationItem('', '', '', '');
 }
 
 export function initializeSkillsItem() {

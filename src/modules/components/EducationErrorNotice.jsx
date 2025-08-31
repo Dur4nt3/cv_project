@@ -7,10 +7,12 @@ export default function EducationErrorNotice({ errors }) {
                     const errorLabels = {
                         institution: 'Institution',
                         label: 'Education Label',
+                        gradDate: 'Graduation Date'
                     };
                     const errorDescriptions = {
                         institution: 'Ensure to not leave this input blank',
                         label: 'Ensure to not leave this input blank',
+                        gradDate: 'Ensure to not leave this input blank'
                     };
 
                     return (

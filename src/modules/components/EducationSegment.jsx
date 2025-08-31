@@ -1,15 +1,12 @@
-import EducationDescription from './EducationDescription';
 import EducationErrorNotice from './EducationErrorNotice';
 
 export default function EducationSegment({
-    theme,
     itemId,
     education,
     stateUpdater,
     updateEducation,
-    addDescriptionBullets,
-    removeDescriptionBullets,
     errors,
+    setPreviewStatus,
 }) {
     const educationItem = education[itemId];
 
@@ -24,41 +21,44 @@ export default function EducationSegment({
             )}
 
             {Object.keys(educationItem).map((key) => {
-                if (key === 'description') {
-                    return (
-                        <EducationDescription
-                            key={itemId}
-                            description={educationItem[key]}
-                            itemId={itemId}
-                            theme={theme}
-                            state={education}
-                            stateUpdater={stateUpdater}
-                            addDescriptionBullets={addDescriptionBullets}
-                            removeDescriptionBullets={removeDescriptionBullets}
-                            updateEducation={updateEducation}
-                        />
-                    );
-                }
+                let finalInput;
 
                 const labels = {
                     institution: 'Institution Name',
                     label: 'Education Label',
+                    gradDate: 'Graduation Date',
+                    description: 'Description'
                 };
 
                 const placeholders = {
                     institution: 'E.g., Rice University',
                     label: 'E.g., BSc in Computer Science',
+                    description: 'E.g., GPA: 3.X/4; Science Honors Society.'
                 };
 
-                return (
-                    <div className='form-row' key={key}>
-                        <label className='form-label'>
-                            {labels[key]}
-                            <span className='required-indicator'>*</span>
-                        </label>
+                if (key === 'description') {
+                    finalInput = (
+                        <textarea
+                            required={false}
+                            value={educationItem[key]}
+                            onChange={(event) =>
+                                updateEducation(
+                                    event,
+                                    itemId,
+                                    key,
+                                    education,
+                                    stateUpdater,
+                                    setPreviewStatus
+                                )
+                            }
+                            placeholder={placeholders[key]}
+                        ></textarea>
+                    );
+                } else {
+                    finalInput = (
                         <input
                             className='form-input'
-                            type='text'
+                            type={key === 'gradDate' ? 'date' : 'text'}
                             required={true}
                             value={educationItem[key]}
                             onChange={(event) =>
@@ -67,11 +67,22 @@ export default function EducationSegment({
                                     itemId,
                                     key,
                                     education,
-                                    stateUpdater
+                                    stateUpdater,
+                                    setPreviewStatus
                                 )
                             }
                             placeholder={placeholders[key]}
                         />
+                    );
+                }
+
+                return (
+                    <div className='form-row' key={key}>
+                        <label className='form-label'>
+                            {labels[key]}
+                            {finalInput.type === 'input' && <span className='required-indicator'>*</span>}
+                        </label>
+                        {finalInput}
                     </div>
                 );
             })}

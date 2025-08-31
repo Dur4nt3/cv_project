@@ -33,6 +33,7 @@ function ProjectDescriptionBullets({
     stateUpdater,
     description,
     updateProjects,
+    setPreviewStatus,
 }) {
     return (
         <>
@@ -50,7 +51,8 @@ function ProjectDescriptionBullets({
                                 itemId,
                                 'description',
                                 state,
-                                stateUpdater
+                                stateUpdater,
+                                setPreviewStatus
                             )
                         }
                         placeholder='Detail a portion of the scope of your project'
@@ -70,6 +72,7 @@ export default function ProjectDescription({
     addDescriptionBullets,
     removeDescriptionBullets,
     updateProjects,
+    setPreviewStatus,
 }) {
     const helpId = `${itemId}-description-help`;
 
@@ -92,6 +95,7 @@ export default function ProjectDescription({
                     stateUpdater={stateUpdater}
                     description={description}
                     updateProjects={updateProjects}
+                    setPreviewStatus={setPreviewStatus}
                 />
             </div>
             <div className='project-description-control description-control-cont'>
@@ -99,7 +103,12 @@ export default function ProjectDescription({
                     className='project-add-bullet add-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
-                        addDescriptionBullets(itemId, state, stateUpdater);
+                        addDescriptionBullets(
+                            itemId,
+                            state,
+                            stateUpdater,
+                            setPreviewStatus
+                        );
                     }}
                 >
                     Add Bullet
@@ -108,7 +117,12 @@ export default function ProjectDescription({
                     className='project-remove-bullet remove-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
-                        removeDescriptionBullets(itemId, state, stateUpdater);
+                        removeDescriptionBullets(
+                            itemId,
+                            state,
+                            stateUpdater,
+                            setPreviewStatus
+                        );
                     }}
                     disabled={Object.keys(description).length === 0}
                 >

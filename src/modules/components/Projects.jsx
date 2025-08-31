@@ -53,6 +53,7 @@ export default function Projects({
     addDescriptionBullets,
     removeDescriptionBullets,
     errors,
+    setPreviewStatus,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -106,6 +107,7 @@ export default function Projects({
                         addDescriptionBullets={addDescriptionBullets}
                         removeDescriptionBullets={removeDescriptionBullets}
                         errors={errors !== null ? errors[itemId] : null}
+                        setPreviewStatus={setPreviewStatus}
                     />
                 ))}
 
@@ -114,7 +116,11 @@ export default function Projects({
                         className='add-projects-segment add-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            addProjectItem(projects, stateUpdater);
+                            addProjectItem(
+                                projects,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                     >
                         Add
@@ -123,7 +129,11 @@ export default function Projects({
                         className='remove-projects-segment remove-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            removeProjectItem(projects, stateUpdater);
+                            removeProjectItem(
+                                projects,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                         disabled={Object.keys(projects).length === 1 && true}
                     >

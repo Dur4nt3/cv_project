@@ -28,6 +28,10 @@ function EducationTooltip({ id }) {
                     Similar to other sections, you may toggle this section off
                     if you think you don't have any relevant education.
                 </p>
+                <p>
+                    <b>NOTE:</b> If you haven't graduated yet, you may list a
+                    projected graduation date.
+                </p>
             </div>
         </Tooltip>
     );
@@ -42,9 +46,8 @@ export default function Education({
     updateEducation,
     addEducationItem,
     removeEducationItem,
-    addDescriptionBullets,
-    removeDescriptionBullets,
     errors,
+    setPreviewStatus,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -95,9 +98,8 @@ export default function Education({
                         education={education}
                         stateUpdater={stateUpdater}
                         updateEducation={updateEducation}
-                        addDescriptionBullets={addDescriptionBullets}
-                        removeDescriptionBullets={removeDescriptionBullets}
                         errors={errors !== null ? errors[itemId] : null}
+                        setPreviewStatus={setPreviewStatus}
                     />
                 ))}
 
@@ -106,7 +108,11 @@ export default function Education({
                         className='add-education-segment add-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            addEducationItem(education, stateUpdater);
+                            addEducationItem(
+                                education,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                     >
                         Add
@@ -115,7 +121,11 @@ export default function Education({
                         className='remove-education-segment remove-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            removeEducationItem(education, stateUpdater);
+                            removeEducationItem(
+                                education,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                         disabled={Object.keys(education).length === 1 && true}
                     >

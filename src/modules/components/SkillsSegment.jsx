@@ -6,6 +6,7 @@ export default function SkillsSegment({
     stateUpdater,
     updateSkills,
     errors,
+    setPreviewStatus,
 }) {
     const skillsItem = skills[itemId];
 
@@ -42,7 +43,8 @@ export default function SkillsSegment({
                                     itemId,
                                     key,
                                     skills,
-                                    stateUpdater
+                                    stateUpdater,
+                                    setPreviewStatus
                                 )
                             }
                             placeholder={placeholders[key]}
@@ -59,7 +61,8 @@ export default function SkillsSegment({
                                     itemId,
                                     key,
                                     skills,
-                                    stateUpdater
+                                    stateUpdater,
+                                    setPreviewStatus
                                 )
                             }
                             placeholder={placeholders[key]}

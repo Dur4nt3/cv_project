@@ -40,13 +40,27 @@ form {
     font-size: var(--fs-base);
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
 }
 
-.form-buttons-cont > * {
+.form-buttons-cont > *:not(.form-buttons-type2) {
+    width: 15ch;
+}
+
+.form-buttons-type1 > * {
     width: 100%;
 }
 
-.form-buttons-cont > *,
+.preview-submission.preview-not-ready {
+    display: none;
+}
+
+.pdf-blob {
+    display: none;
+}
+
+.form-buttons-type1 > *,
 .control-button-cont > *,
 .description-control-cont > *,
 .clear-all-actions > * {
@@ -59,7 +73,6 @@ form {
     transition: 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.form-buttons-cont > *:hover,
 .add-segment-button:hover,
 .clear-all-actions > *:hover,
 .remove-segment-button:not(:disabled):hover,
@@ -68,7 +81,11 @@ form {
     transform: translateY(-0.15rem);
 }
 
-.form-buttons-cont > *:active,
+.form-buttons-type1 > *:hover {
+    filter: brightness(1.085);
+}
+
+.form-buttons-type1 > *:active,
 .clear-all-actions > *:active,
 .control-buttons-cont > *:active,
 .description-control-cont > *:active {
@@ -78,7 +95,8 @@ form {
 .submit-form,
 .add-segment-button,
 .add-bullet-button,
-.cancel-clear-button {
+.cancel-clear-button,
+.check-submission {
     color: var(--text-main);
     background-color: var(--confirm-green);
 }
@@ -86,7 +104,8 @@ form {
 body.dark-mode .submit-form,
 body.dark-mode .add-segment-button,
 body.dark-mode .add-bullet-button,
-body.dark-mode .cancel-clear-button {
+body.dark-mode .cancel-clear-button,
+body.dark-mode .check-submission {
     color: var(--text-alt);
 }
 
@@ -434,7 +453,8 @@ body.dark-mode .clear-data-button {
     margin-bottom: 1rem;
 }
 
-.section-errors, .all-form-errors {
+.section-errors,
+.all-form-errors {
     max-width: 100%;
     padding: 0.5rem;
     border-radius: 0.35rem;
@@ -469,4 +489,39 @@ body.dark-mode .all-form-errors {
 
 .inline-img.new-tab-icon {
     vertical-align: text-top;
+}
+
+.form-buttons-type2 {
+    align-self: stretch;
+}
+
+.cv-download-button {
+    width: max-content;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--confirm-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cv-download-button.preview-not-ready,
+.check-submission.preview-ready {
+    display: none;
+}
+
+.cv-download-button.preview-ready,
+.preview-submission.preview-ready {
+    animation: fade-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

@@ -29,8 +29,6 @@ import {
     updateEducation,
     addEducationItem,
     removeEducationItem,
-    addEduDescriptionBullets,
-    removeEduDescriptionBullets,
 } from '../stateUtils/education-utils';
 import {
     updateSkills,
@@ -82,6 +80,8 @@ export default function Form({ theme }) {
         summaryErrors: null,
     });
 
+    const [previewReady, setPreviewStatus] = useState(false);
+
     const [clearNoticeShown, updateClearNoticeStatus] = useState(false);
     const [toggledSections, toggleSection] = useState(
         initializeToggledSections()
@@ -96,11 +96,12 @@ export default function Form({ theme }) {
         summary,
     };
 
-    function handlePreview(event) {
+    function handleCheck(event) {
         event.preventDefault();
         const formErrors = validateForm(stateObj, toggledSections);
         if (formErrors === null) {
             console.log('ready to preview');
+            console.log(toggledSections);
             setErrors({
                 infoErrors: null,
                 experienceErrors: null,
@@ -109,8 +110,10 @@ export default function Form({ theme }) {
                 skillsErrors: null,
                 summaryErrors: null,
             });
+            setPreviewStatus(true);
         } else {
-            console.log('errors found: ', formErrors);
+            console.log('errors found')
+            setPreviewStatus(false);
             setErrors(formErrors);
         }
     }
@@ -119,6 +122,7 @@ export default function Form({ theme }) {
         const newToggles = { ...toggledSections };
         newToggles[section] = !newToggles[section];
         toggleSection(newToggles);
+        setPreviewStatus(false);
     }
 
     return (
@@ -152,6 +156,7 @@ export default function Form({ theme }) {
                 updateInfo={updateInfo}
                 stateUpdater={setInfo}
                 errors={errors.infoErrors}
+                setPreviewStatus={setPreviewStatus}
             />
             <Experience
                 theme={theme}
@@ -165,6 +170,7 @@ export default function Form({ theme }) {
                 addDescriptionBullets={addExpDescriptionBullets}
                 removeDescriptionBullets={removeExpDescriptionBullets}
                 errors={errors.experienceErrors}
+                setPreviewStatus={setPreviewStatus}
             />
             <Projects
                 theme={theme}
@@ -178,6 +184,7 @@ export default function Form({ theme }) {
                 addDescriptionBullets={addProDescriptionBullets}
                 removeDescriptionBullets={removeProDescriptionBullets}
                 errors={errors.projectsErrors}
+                setPreviewStatus={setPreviewStatus}
             />
             <Education
                 theme={theme}
@@ -188,9 +195,8 @@ export default function Form({ theme }) {
                 updateEducation={updateEducation}
                 addEducationItem={addEducationItem}
                 removeEducationItem={removeEducationItem}
-                addDescriptionBullets={addEduDescriptionBullets}
-                removeDescriptionBullets={removeEduDescriptionBullets}
                 errors={errors.educationErrors}
+                setPreviewStatus={setPreviewStatus}
             />
             <Skills
                 theme={theme}
@@ -202,6 +208,7 @@ export default function Form({ theme }) {
                 addSkillsItem={addSkillsItem}
                 removeSkillsItem={removeSkillsItem}
                 errors={errors.skillsErrors}
+                setPreviewStatus={setPreviewStatus}
             />
             <Summary
                 theme={theme}
@@ -210,9 +217,17 @@ export default function Form({ theme }) {
                 summary={summary}
                 setSummary={setSummary}
                 errors={errors.summaryErrors}
+                setPreviewStatus={setPreviewStatus}
             />
             <FormErrors errors={errors} />
-            <FormActions handlePreview={handlePreview} theme={theme} />
+            <FormActions
+                handleCheck={handleCheck}
+                theme={theme}
+                setPreviewStatus={setPreviewStatus}
+                previewReady={previewReady}
+                stateObj={stateObj}
+                toggledSections={toggledSections}
+            />
         </form>
     );
 }

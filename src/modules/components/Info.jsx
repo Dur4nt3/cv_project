@@ -12,6 +12,7 @@ export default function Info({
     updateInfo,
     stateUpdater,
     errors,
+    setPreviewStatus,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -40,6 +41,7 @@ export default function Info({
                     infoObj={info}
                     changeCallback={updateInfo}
                     stateUpdater={stateUpdater}
+                    setPreviewStatus={setPreviewStatus}
                 />
             </div>
         </div>

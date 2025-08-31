@@ -41,6 +41,7 @@ export default function Skills({
     addSkillsItem,
     removeSkillsItem,
     errors,
+    setPreviewStatus,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -91,6 +92,7 @@ export default function Skills({
                         stateUpdater={stateUpdater}
                         updateSkills={updateSkills}
                         errors={errors !== null ? errors[itemId] : null}
+                        setPreviewStatus={setPreviewStatus}
                     />
                 ))}
 
@@ -99,7 +101,11 @@ export default function Skills({
                         className='add-skills-segment add-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            addSkillsItem(skills, stateUpdater);
+                            addSkillsItem(
+                                skills,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                     >
                         Add
@@ -108,7 +114,11 @@ export default function Skills({
                         className='remove-skills-segment remove-segment-button'
                         onClick={(event) => {
                             event.preventDefault();
-                            removeSkillsItem(skills, stateUpdater);
+                            removeSkillsItem(
+                                skills,
+                                stateUpdater,
+                                setPreviewStatus
+                            );
                         }}
                         disabled={Object.keys(skills).length === 1 && true}
                     >

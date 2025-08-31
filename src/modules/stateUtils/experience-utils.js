@@ -1,7 +1,14 @@
 import { extractDescIdNumber } from '../utilities/misc-utilities';
 import { initializeExperienceItem } from '../utilities/form-utilities';
 
-export function updateExperience(event, itemId, property, state, stateUpdater) {
+export function updateExperience(
+    event,
+    itemId,
+    property,
+    state,
+    stateUpdater,
+    setPreviewStatus
+) {
     let newVal = event.target.value;
 
     if (property === 'positionDescription') {
@@ -24,9 +31,15 @@ export function updateExperience(event, itemId, property, state, stateUpdater) {
         [itemId]: { ...state[itemId], [property]: newVal },
     };
     stateUpdater(newExp);
+    setPreviewStatus(false);
 }
 
-export function addExpDescriptionBullets(itemId, state, stateUpdater) {
+export function addExpDescriptionBullets(
+    itemId,
+    state,
+    stateUpdater,
+    setPreviewStatus
+) {
     const idList = Object.keys(state[itemId].positionDescription);
     let newDescId;
     if (idList.length === 0) {
@@ -46,9 +59,15 @@ export function addExpDescriptionBullets(itemId, state, stateUpdater) {
         },
     };
     stateUpdater(newExp);
+    setPreviewStatus(false);
 }
 
-export function removeExpDescriptionBullets(itemId, state, stateUpdater) {
+export function removeExpDescriptionBullets(
+    itemId,
+    state,
+    stateUpdater,
+    setPreviewStatus
+) {
     const idList = Object.keys(state[itemId].positionDescription);
     // Unlike experience items, allow a position to have no description
     if (idList.length === 0) {
@@ -60,9 +79,10 @@ export function removeExpDescriptionBullets(itemId, state, stateUpdater) {
     delete newExp[itemId].positionDescription[latestId];
 
     stateUpdater(newExp);
+    setPreviewStatus(false);
 }
 
-export function addExperienceItem(state, stateUpdater) {
+export function addExperienceItem(state, stateUpdater, setPreviewStatus) {
     const idList = Object.keys(state);
     const latestId = idList[idList.length - 1];
     const newId = Number(latestId.slice(3)) + 1;
@@ -72,9 +92,10 @@ export function addExperienceItem(state, stateUpdater) {
     };
 
     stateUpdater(newExp);
+    setPreviewStatus(false);
 }
 
-export function removeExperienceItem(state, stateUpdater) {
+export function removeExperienceItem(state, stateUpdater, setPreviewStatus) {
     const idList = Object.keys(state);
     if (idList.length === 1) {
         return;
@@ -85,4 +106,5 @@ export function removeExperienceItem(state, stateUpdater) {
     delete newExp[latestId];
 
     stateUpdater(newExp);
+    setPreviewStatus(false);
 }

@@ -33,6 +33,7 @@ function PositionDescriptionBullets({
     stateUpdater,
     positionDescription,
     updateExperience,
+    setPreviewStatus,
 }) {
     return (
         <>
@@ -50,7 +51,8 @@ function PositionDescriptionBullets({
                                 itemId,
                                 'positionDescription',
                                 state,
-                                stateUpdater
+                                stateUpdater,
+                                setPreviewStatus
                             )
                         }
                         placeholder='Detail a portion of your responsibilities within the specified position'
@@ -70,6 +72,7 @@ export default function PositionDescription({
     addDescriptionBullets,
     removeDescriptionBullets,
     updateExperience,
+    setPreviewStatus,
 }) {
     const helpId = `${itemId}-description-help`;
 
@@ -92,6 +95,7 @@ export default function PositionDescription({
                     stateUpdater={stateUpdater}
                     positionDescription={positionDescription}
                     updateExperience={updateExperience}
+                    setPreviewStatus={setPreviewStatus}
                 />
             </div>
             <div className='position-description-control description-control-cont'>
@@ -99,7 +103,12 @@ export default function PositionDescription({
                     className='position-add-bullet add-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
-                        addDescriptionBullets(itemId, state, stateUpdater);
+                        addDescriptionBullets(
+                            itemId,
+                            state,
+                            stateUpdater,
+                            setPreviewStatus
+                        );
                     }}
                 >
                     Add Bullet
@@ -108,7 +117,12 @@ export default function PositionDescription({
                     className='position-remove-bullet remove-bullet-button'
                     onClick={(event) => {
                         event.preventDefault();
-                        removeDescriptionBullets(itemId, state, stateUpdater);
+                        removeDescriptionBullets(
+                            itemId,
+                            state,
+                            stateUpdater,
+                            setPreviewStatus
+                        );
                     }}
                     disabled={Object.keys(positionDescription).length === 0}
                 >

@@ -1,7 +1,5 @@
 .notice-cont {
     background: var(--background-color);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
 
     padding: 0.5rem;
     border-radius: 0.45rem;
@@ -22,7 +20,7 @@
 }
 
 .notice-cont > *:not(.button-cont) {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
 }
 
 .notice-subheading {
@@ -38,6 +36,15 @@
 
 .notice-item:not(:last-child) {
     margin-bottom: 0.5rem;
+}
+
+.app-disclaimer > .notice-paragraph:not(:last-child) {
+    margin-bottom: 0.35rem;
+}
+
+.disclaimer-header {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
 }
 
 .button-cont {

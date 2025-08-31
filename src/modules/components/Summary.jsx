@@ -30,6 +30,7 @@ export default function Summary({
     summary,
     setSummary,
     errors,
+    setPreviewStatus,
 }) {
     const [collapsed, collapseSection] = useState(false);
     const [collapseSectionHeight, setCollapseSectionHeight] = useState(0);
@@ -84,7 +85,10 @@ export default function Summary({
                     <textarea
                         required={true}
                         value={summary}
-                        onChange={(event) => setSummary(event.target.value)}
+                        onChange={(event) => {
+                            setSummary(event.target.value);
+                            setPreviewStatus(false);
+                        }}
                         placeholder='Write a quick concise summary that includes your skills, expertise, experience, etc.'
                     ></textarea>
                 </div>

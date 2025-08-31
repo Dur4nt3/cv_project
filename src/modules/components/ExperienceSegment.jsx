@@ -10,6 +10,7 @@ export default function ExperienceSegment({
     addDescriptionBullets,
     removeDescriptionBullets,
     errors,
+    setPreviewStatus,
 }) {
     const experienceItem = experience[itemId];
 
@@ -19,7 +20,7 @@ export default function ExperienceSegment({
                 Position {itemId.slice(3)}
             </h3>
 
-            {(errors !== null && errors !== undefined) && (
+            {errors !== null && errors !== undefined && (
                 <ExperienceErrorNotice errors={errors} />
             )}
 
@@ -36,6 +37,7 @@ export default function ExperienceSegment({
                             addDescriptionBullets={addDescriptionBullets}
                             removeDescriptionBullets={removeDescriptionBullets}
                             updateExperience={updateExperience}
+                            setPreviewStatus={setPreviewStatus}
                         />
                     );
                 }
@@ -80,7 +82,8 @@ export default function ExperienceSegment({
                                     itemId,
                                     key,
                                     experience,
-                                    stateUpdater
+                                    stateUpdater,
+                                    setPreviewStatus
                                 )
                             }
                             placeholder={placeholders[key]}

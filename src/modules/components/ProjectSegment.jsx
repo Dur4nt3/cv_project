@@ -10,6 +10,7 @@ export default function ProjectSegment({
     addDescriptionBullets,
     removeDescriptionBullets,
     errors,
+    setPreviewStatus,
 }) {
     const projectsItem = projects[itemId];
 
@@ -36,6 +37,7 @@ export default function ProjectSegment({
                             addDescriptionBullets={addDescriptionBullets}
                             removeDescriptionBullets={removeDescriptionBullets}
                             updateProjects={updateProjects}
+                            setPreviewStatus={setPreviewStatus}
                         />
                     );
                 }
@@ -46,7 +48,7 @@ export default function ProjectSegment({
                 };
 
                 const placeholders = {
-                    name: 'E.g., John Doe',
+                    name: 'E.g., Example Project',
                     link: 'E.g., https://www.myportfolio/myproject',
                 };
 
@@ -67,7 +69,8 @@ export default function ProjectSegment({
                                     itemId,
                                     key,
                                     projects,
-                                    stateUpdater
+                                    stateUpdater,
+                                    setPreviewStatus
                                 )
                             }
                             placeholder={placeholders[key]}
