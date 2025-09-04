@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
 
     skillWrapper: {
-        flexDirection: 'row',
+        flexDirection: 'column',
     },
 
     skillType: {
@@ -44,11 +44,13 @@ export default function SkillsPDF({ skills }) {
 
                     return (
                         <View style={styles.skillWrapper} key={itemId}>
-                            <Text>{'\u2022  '}</Text>
                             <Text style={styles.skillType}>
-                                {skillsItem.type}:{' '}
+                                {skillsItem.type}
                             </Text>
-                            <Text>{skillsItem.description}</Text>
+                            <Text>
+                                {'\u2022  '}
+                                {skillsItem.description}
+                            </Text>
                         </View>
                     );
                 })}
