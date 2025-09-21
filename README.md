@@ -8,6 +8,8 @@ This project acts as an introduction to React's essential concepts.
 
 In particular, this project aims to create an application that can dynamically create CVs (resumes).
 
+**You can preview the project at: https://dantescvcreate.netlify.app/**
+
 ## Skills Demonstrated
 
 - React
